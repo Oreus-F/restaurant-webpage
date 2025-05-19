@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+:root{
+    --main-color: #fbf0df;
+    --secondary-color: #000000;
+}
+
 body{
     overflow: hidden;
 }
@@ -18,6 +23,13 @@ header{
     z-index: 2;
 }
 
+.menu {
+    background: var(--main-color);
+}
+
+header.menu button{
+    color: var(--secondary-color);
+}
 
 nav{
     height: 100%;
@@ -38,7 +50,7 @@ nav > button {
     width: 10rem;
     height: 3.5rem;
 
-    color: rgb(255, 255, 255);
+    color: var(--main-color);
     font-size: 1.3rem;
 
     cursor: pointer;
@@ -62,7 +74,7 @@ nav > button {
 #banderole{
     position: absolute;
     z-index: 2;
-    color: white;
+    color: var(--main-color);
 
     font-size: 5rem;
     display: flex;
