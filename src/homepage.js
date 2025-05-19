@@ -20,3 +20,6 @@ const homepageLoading = function(){
     content.appendChild(banderole);
     content.appendChild(img);
 }
+
+
+export {homepageLoading}
