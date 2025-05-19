@@ -56,11 +56,12 @@ nav > button {
     height: 100dvh;
     object-fit: cover;
     object-position: 0% 60%;
+    filter: brightness(0.8);
 }
 
 #banderole{
     position: absolute;
-    background: #16161646;
+    z-index: 2;
     color: white;
 
     font-size: 5rem;
