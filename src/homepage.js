@@ -16,5 +16,7 @@ const homepageLoading = function(){
     const img = document.createElement("img");
     img.src = mainImg;
 
-   
+    const content = document.querySelector("#content");
+    content.appendChild(banderole);
+    content.appendChild(img);
 }
