@@ -5,9 +5,12 @@
 }
 
 :root{
+
+    --header: 8rem;
+
     --main-color: #fbf0df;
-    --secondary-color: #000000;
-    --ascent-color: #0081A7;
+    --secondary-color: #334D66;
+    --ascent-color: #4EA669;
 }
 
 body{
@@ -30,6 +33,7 @@ header{
 
 header.menu button{
     color: var(--secondary-color);
+    text-shadow: none;
 }
 
 nav{
@@ -66,12 +70,18 @@ nav > button {
     min-height: 100dvh;
 }
 
+
 #content > img{
     width: 100dvw;
     height: 100dvh;
     object-fit: cover;
     object-position: 0% 60%;
     filter: brightness(0.8);
+}
+
+
+#content.menu{
+    position: relative;
 }
 
 #banderole{
@@ -88,4 +98,13 @@ nav > button {
     height: 100%;
     gap: 1.4rem;
     text-shadow: var(--secondary-color) 1px 1px 0px;
+}
+
+
+#content-center{
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 75%;
+    border: 10px solid red;
 }
