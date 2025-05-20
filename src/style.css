@@ -7,6 +7,7 @@
 :root{
     --main-color: #fbf0df;
     --secondary-color: #000000;
+    --ascent-color: #0081A7;
 }
 
 body{
@@ -51,9 +52,11 @@ nav > button {
     height: 3.5rem;
 
     color: var(--main-color);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 
     cursor: pointer;
+    text-shadow: var(--secondary-color) 1px 1px 0px;
+
 
 }
 
@@ -84,4 +87,5 @@ nav > button {
     width: 100%;
     height: 100%;
     gap: 1.4rem;
+    text-shadow: var(--secondary-color) 1px 1px 0px;
 }
