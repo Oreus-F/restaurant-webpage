@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 :root{
@@ -11,6 +12,12 @@
 
     --main-color: #fbf0df;
     --secondary-color: #334D66;
+
+
+
+    /* --main-color: #334D66;
+    --secondary-color: #fbf0df; */
+
     --ascent-color: #4EA669;
 }
 
@@ -101,10 +108,55 @@ nav > button {
 }
 
 
-#content-center{
-    position: absolute;
-    inset: 0;
+.content-center{
     margin: auto;
-    width: 75%;
-    border: 10px solid red;
+    width: 55%;
+    color: var(--secondary-color);
+}
+
+.page-title > h1{
+    font-size: 4rem;
+    color: var(--secondary-color);
+    padding: 3rem 0;
+    text-align: center
+}
+
+
+
+/* TEST TITLE WITH IMGS */
+
+/* .content-center > h2 {
+    font-size: 2rem;
+    padding: 3rem 0 0 0;
+    color: var(--secondary-color)
+}
+
+.content-center > h3{
+    margin-bottom: 2rem;
+} */
+
+
+.title-img > div:first-child{
+    width: 100%;
+    height: 8rem;
+    color: var(--main-color);
+    /* remplacer par img  */
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.listing li{
+    display: grid;
+    grid-template-rows: repeat(2, 2rem);
+    grid-template-columns: 1fr 4rem;
+    margin-bottom: 2rem;
+}
+
+.listing li > p:nth-child(2){
+    grid-row: 1/3;
+    grid-column: 2/3;
+    text-align: right;
 }
