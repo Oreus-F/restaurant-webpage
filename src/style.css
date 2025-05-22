@@ -200,7 +200,27 @@ nav > button {
 
 
 .glaces > div:first-child{
-    position: relative;
+    background-image: url("/asset/img/glace-menu.jpg");
+    background-size: cover;
+    background-position-y: 55%;
+}
+
+
+.cidre-biere > div:first-child{
+    background-image: url("/asset/img/glace-menu.jpg");
+    background-size: cover;
+    background-position-y: 55%;
+}
+
+
+.vins > div:first-child{
+    background-image: url("/asset/img/glace-menu.jpg");
+    background-size: cover;
+    background-position-y: 55%;
+}
+
+
+.sans-alcool > div:first-child{
     background-image: url("/asset/img/glace-menu.jpg");
     background-size: cover;
     background-position-y: 55%;
