@@ -1,0 +1,1 @@
+﻿Café / Thé;2.50 €;empty;Perrier;4.00€;empty;Jus de fruit;5.00 €;jus d’orange, jus d’abricot, jus de poire, jus de fraise;Soda;5.00 €;Coca-cola, coca-cola zero, ginger beer, limonade
