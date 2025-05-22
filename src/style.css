@@ -114,6 +114,12 @@ nav > button {
     color: var(--secondary-color);
 }
 
+
+.page-title{
+    display: none;
+}
+
+
 .page-title > h1{
     font-size: 4rem;
     color: var(--secondary-color);
