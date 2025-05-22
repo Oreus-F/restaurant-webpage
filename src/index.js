@@ -4,4 +4,4 @@ import { homepageLoading } from "./homepage";
 import { loadingMenu } from "./menu";
 
 // homepageLoading();
-// loadingMenu();
+loadingMenu();
