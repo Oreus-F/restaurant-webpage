@@ -49,9 +49,7 @@ const create_galette = function(text){
     const ul = document.createElement("ul");
 
     let listeContent = text.split(";");
-    console.log(`longueur : ${listeContent.length}`)
     let liLength = Math.floor((listeContent.length)/3);
-    console.log(`divisé par 3 : ${liLength}`)
 
     for (let x = 0; x < liLength; x++){
         const li = createLI(listeContent);
