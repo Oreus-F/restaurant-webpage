@@ -157,7 +157,7 @@ nav > button {
 .listing li{
     display: grid;
     grid-template-rows: repeat(2, 2rem);
-    grid-template-columns: 1fr 4rem;
+    grid-template-columns: 1fr 8rem;
     margin-bottom: 3rem;
     align-items: end;
 }
