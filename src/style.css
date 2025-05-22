@@ -122,20 +122,6 @@ nav > button {
 }
 
 
-
-/* TEST TITLE WITH IMGS */
-
-/* .content-center > h2 {
-    font-size: 2rem;
-    padding: 3rem 0 0 0;
-    color: var(--secondary-color)
-}
-
-.content-center > h3{
-    margin-bottom: 2rem;
-} */
-
-
 .title-img > div:first-child{
     width: 100%;
     height: 12rem;
@@ -146,10 +132,13 @@ nav > button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-transform: uppercase;
+    position: relative;
 }
 
 .title-img > div:first-child > h2{
     font-size: 3rem;
+
 }
 
 
@@ -182,13 +171,13 @@ nav > button {
 }
 
 .galettes > div:first-child{
-    position: relative;
     background-image: url("/asset/img/galette-menu.jpg");
     background-size: cover;
     background-position-y: 60%;
 }
 
-.galettes > div:first-child::before{
+
+.title-img > div:first-child::before{
     content: "";
     position: absolute;
     inset: 0;
@@ -197,6 +186,22 @@ nav > button {
     background-color: rgba(46, 46, 46, 0.329);
 }
 
-.galettes > div:first-child > * {
+.title-img > div:first-child > * {
     z-index: 2;
+}
+
+
+
+.crepe > div:first-child{
+    background-image: url("/asset/img/crepe2-menu.jpg");
+    background-size: cover;
+    background-position-y: 60%;
+}
+
+
+.glaces > div:first-child{
+    position: relative;
+    background-image: url("/asset/img/glace-menu.jpg");
+    background-size: cover;
+    background-position-y: 55%;
 }
