@@ -213,21 +213,21 @@ nav > button {
 
 
 .cidre-biere > div:first-child{
-    background-image: url("/asset/img/glace-menu.jpg");
+    background-image: url("/asset/img/cidre-menu.jpg");
     background-size: cover;
     background-position-y: 55%;
 }
 
 
 .vins > div:first-child{
-    background-image: url("/asset/img/glace-menu.jpg");
+    background-image: url("/asset/img/vins.jpg");
     background-size: cover;
     background-position-y: 55%;
 }
 
 
 .sans-alcool > div:first-child{
-    background-image: url("/asset/img/glace-menu.jpg");
+    background-image: url("/asset/img/cafe.jpg");
     background-size: cover;
     background-position-y: 55%;
 }
