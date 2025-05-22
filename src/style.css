@@ -234,3 +234,9 @@ nav > button {
     background-size: cover;
     background-position-y: 55%;
 }
+
+.galettes > p:last-child,
+.crepe > p:last-child,
+.glaces > p:last-child{
+    text-align: center;
+}
