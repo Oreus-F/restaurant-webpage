@@ -32,7 +32,7 @@ header{
     position: sticky;
     inset: 0;
     background: none;
-    z-index: 2;
+    z-index: 10;
 }
 
 .menu {
