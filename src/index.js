@@ -1,7 +1,8 @@
 import "./style.css";
 import { resetDOM } from "./resetpage";
-import { homepageLoading } from "./homepage";
+import { loading_homepage } from "./homepage";
 import { loadingMenu } from "./menu";
 
-// homepageLoading();
-loadingMenu();
+// resetDOM();
+// loading_homepage();
+// loadingMenu();
