@@ -1,7 +1,7 @@
 import mainImg from "/asset/img/mainGalette.jpeg"
 
 
-const homepageLoading = function(){
+const loading_homepage = function(){
     const banderole = document.createElement("div");
     banderole.setAttribute("id", "banderole");
 
@@ -17,9 +17,10 @@ const homepageLoading = function(){
     img.src = mainImg;
 
     const content = document.querySelector("#content");
+    content.classList.toggle("home");
     content.appendChild(banderole);
     content.appendChild(img);
 }
 
 
-export {homepageLoading}
+export {loading_homepage}
