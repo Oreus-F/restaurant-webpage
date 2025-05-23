@@ -6,12 +6,9 @@ import liste_vins from "../asset/txt/liste_vins.txt";
 import liste_sans_alcool from "../asset/txt/liste_sans_alcool.txt";
 
 
-
-
-
 const create_title = function(text){
     const div = document.createElement("div");
-    div.setAttribute("class", `content-center title-img listing`);
+    div.setAttribute("class", "content-center title-img listing");
 
     if (text[0] === "galettes" || text[0] === "crêpes"){
         div.classList.toggle(text[0])
@@ -60,7 +57,6 @@ const create_allergene = function(text){
 
 
 const generate_li = function(text){
-
     const liste = document.createElement("li");
     const p1 = document.createElement("p");
     const p2 = document.createElement("p");
@@ -72,19 +68,15 @@ const generate_li = function(text){
     liste.appendChild(p2);
 
     if (p3.textContent === "empty") return liste;
+    liste.appendChild(p3); 
 
-    liste.appendChild(p3);
-    
     return liste;
-
 };
 
 
 const create_list = function(text){
     const ul = document.createElement("ul");
-
     let liLength = Math.floor((text.length)/3);
-
     for (let x = 0; x < liLength; x++){
         const li = generate_li(text);
         text.splice(0, 3);
@@ -97,13 +89,9 @@ const create_list = function(text){
 
 const create_menu = function(text){
     let textFile = text.split(";");
-
-    const div = create_title(textFile);
-    
+    const div = create_title(textFile);   
     div.appendChild(create_list(textFile));
-
     if(textFile.length !== 0) div.appendChild(create_allergene(textFile));
-
     return div
 }
 
@@ -114,14 +102,12 @@ const loadingMenu = function(){
     if (header.getAttribute("class") !== "menu") header.classList.toggle("menu");
 
     const content = document.querySelector("#content");
-
     content.appendChild(create_menu(liste_galette));
     content.appendChild(create_menu(liste_crepe));
     content.appendChild(create_menu(liste_glace));
     content.appendChild(create_menu(liste_cidre));
     content.appendChild(create_menu(liste_vins));
-    content.appendChild(create_menu(liste_sans_alcool));
-    
+    content.appendChild(create_menu(liste_sans_alcool));  
 }
 
 
