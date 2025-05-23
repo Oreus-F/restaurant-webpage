@@ -247,7 +247,20 @@ nav > button {
     margin-bottom: 3rem;
 }
 
-
-.reservations{
+/* create a modal above the actual menu */
+/* .reservations{
     background-color: var(--secondary-color);
+} */
+
+
+#reservation{
+    inset: 0;
+    margin: auto;
+    border: none;
+}
+
+#reservation form {
+    width: 50%;
+    height: 60dvh;
+
 }
