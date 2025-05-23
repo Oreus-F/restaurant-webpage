@@ -102,6 +102,9 @@ const loadingMenu = function(){
     if (header.getAttribute("class") !== "menu") header.classList.toggle("menu");
 
     const content = document.querySelector("#content");
+    if (content.getAttribute("class") !== "menu") content.classList.toggle("menu")
+
+
     content.appendChild(create_menu(liste_galette));
     content.appendChild(create_menu(liste_crepe));
     content.appendChild(create_menu(liste_glace));
