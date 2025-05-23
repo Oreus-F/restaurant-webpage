@@ -22,6 +22,11 @@
 }
 
 
+body:has(#content.home){
+    overflow: hidden;
+}
+
+
 #container{
     min-height: 100dvh;
     display: grid;
@@ -72,7 +77,7 @@ nav > button {
 
 }
 
-#content{
+#content.home{
     position: absolute;
     inset: 0;
 }
@@ -240,4 +245,9 @@ nav > button {
 .glaces > p:last-child{
     text-align: center;
     margin-bottom: 3rem;
+}
+
+
+.reservations{
+    background-color: var(--secondary-color);
 }
