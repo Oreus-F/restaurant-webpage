@@ -158,6 +158,8 @@ const decreaseMonth = function(today){
     let displayedMonth = caption.textContent.toLowerCase();
     let year = displayedMonth === "janvier" ? year -=1 : today.year;
 
+    const N0firstDate = getDayInfo(today.month[1], 1, today.year);
+
     const N1Month = wichMonth(today.date, months, 1);
     const N1firstDate =  getDayInfo(N1Month[1], 1, year);
 
@@ -169,44 +171,47 @@ const decreaseMonth = function(today){
         caption.textContent = N1Month[0];
     } else if (displayedMonth === N1Month[0]){
         removeCalendar();
-        createCalendar(Todays1st, today);
+        createCalendar(N0firstDate, today);
         caption.textContent = today.month[0]
     };
 }
 
+const displayBookingCalendar = function(){
+    const calendar = document.querySelector("#calendar");
+    const arrow = document.querySelector("#arrow");
+    const arrows = arrow.querySelectorAll("th");
+    
+    
+    const today = getDayInfo();
+    const Todays1st = getDayInfo(today.month[1], 1, today.year);
+    
+    arrows.forEach((arrow, index) => {
+        const button = document.createElement("button");
+        if (index === 0) { 
+            button.textContent = "<"
+            button.addEventListener("click", () => decreaseMonth(today))
+    
+        } else {
+            button.textContent = ">";
+            button.addEventListener("click", () => {increaseMonth(today)})
+        }
+    
+        arrow.appendChild(button)
+    });
+    
+    
+    createCalendar(Todays1st, today);
+}
+
 /* TEST CREA TABLEAU UTILE */
 
-const calendar = document.querySelector("#calendar");
-const arrow = document.querySelector("#arrow");
-const arrows = arrow.querySelectorAll("th");
-
-
-const today = getDayInfo();
-const Todays1st = getDayInfo(today.month[1], 1, today.year)
 
 
 
 
 
-arrows.forEach((arrow, index) => {
-    const button = document.createElement("button");
-    if (index === 0) { 
-        button.textContent = "<"
-        button.addEventListener("click", () => decreaseMonth(today))
-
-    } else {
-        button.textContent = ">";
-        button.addEventListener("click", () => {increaseMonth(today)})
-    }
-
-    arrow.appendChild(button)
-});
-
-
-console.log(today.day)
-createCalendar(Todays1st, today);
 
 
 
 
-export * from "./calendar-test"
+export default displayBookingCalendar 
