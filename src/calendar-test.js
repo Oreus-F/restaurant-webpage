@@ -99,14 +99,27 @@ const getFirstDay = function(today, weeks, months, specificMonth){
 
 const createCalendar = function(firstDay, actual = {date : 1}){
     let counter = 1;
+    let allMonth = (firstDay.day[2] + firstDay.month[2]);
 
+    if (allMonth > calendarBody.length){
+        const tr = document.createElement("tr");
+        for (let x = 0; x < 7; x++){
+            const td = document.createElement("td");
+            tr.appendChild(td);
+        };
+
+        calendar.appendChild(tr)
+
+        calendarBody = calendar.querySelectorAll("td")
+    }
+    
 
     calendarBody.forEach((day, index) => {
         const button = document.createElement("button");
         day.appendChild(button);
         
         
-        if(index >= firstDay.day[2] && index < (firstDay.day[2] + firstDay.month[2])){
+        if(index >= firstDay.day[2] && index < (allMonth)){
             button.textContent = counter;
             
 
@@ -131,6 +144,10 @@ const createCalendar = function(firstDay, actual = {date : 1}){
 
 
 const removeCalendar = function(){
+    if (calendarBody.length > 35){
+        const extraChild = calendar.querySelectorAll("tr");
+        calendar.removeChild(extraChild[extraChild.length - 1])
+    }
     calendarBody.forEach(item => item.replaceChildren())
 }
 
@@ -152,7 +169,6 @@ const increaseMonth = function(today){
     } else if (ref[1].includes(displayedMonth)){
 
         const newMonth = getDayInfo(nextMonth[1], firstDay.date, firstDay.year);
-        console.log(newMonth.date)
         nextMonth = wichMonth(newMonth.date, months, 1);
         firstDay = getFirstDay(newMonth.date, weeks, months, nextMonth);
         removeCalendar();
@@ -168,7 +184,8 @@ const increaseMonth = function(today){
 
 /* TEST CREA TABLEAU UTILE */
 
-const calendarBody = document.querySelectorAll("td");
+const calendar = document.querySelector("#calendar");
+let calendarBody = document.querySelectorAll("td");
 const arrow = document.querySelector("#arrow");
 const arrows = arrow.querySelectorAll("th");
 
