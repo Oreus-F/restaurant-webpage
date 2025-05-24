@@ -36,6 +36,7 @@ const wichMonth = function(date, months, index){
     return months[result];
 };
 
+
 const wichDay = function(date, weeks){
     let result = date.getDay();
     return weeks[result]
@@ -57,7 +58,7 @@ const getFullDate = function(weeks, months){
 }
 
 
-const getFirstDayMonth = function(weeks, months, specificMonth){
+const getFirstDay = function(weeks, months, specificMonth){
     const today = new Date();
     let firstDay;
     let month;
@@ -85,39 +86,75 @@ const getFirstDayMonth = function(weeks, months, specificMonth){
     return obj;
 }
 
-const calendar = document.querySelector("#calendar")
+
+const createCalendar = function(first, actual = {date : 1}){
+    let counter = 1;
+
+
+    calendarBody.forEach((day, index) => {
+        const button = document.createElement("button");
+        day.appendChild(button);
+        
+        
+        if(index >= first.day[2] && index < (first.day[2] + first.month[2])){
+            button.textContent = counter;
+            
+
+            if (button.textContent < actual.date){
+                button.setAttribute("disabled", "true");
+            } else {
+                button.addEventListener("click", () => { 
+                
+                
+                    return button.textContent;
+                });
+            }
+
+            
+            
+            counter ++
+        } else {
+            button.setAttribute("disabled", "true")
+        }
+    });
+}
+
+const removeCalendar = function(){
+    calendarBody.forEach(item => item.replaceChildren())
+}
+
+
+/* TEST CREA TABLEAU UTILE */
+
 const calendarBody = document.querySelectorAll("td");
+const arrow = document.querySelector("#arrow");
+const arrows = arrow.querySelectorAll("th");
 
 const ajd = getFullDate(weeks, months);
-const avant = getFirstDayMonth(weeks, months);
+const avant = getFirstDay(weeks, months);
 
 
 const today = new Date();
 
 const nextMonth = wichMonth(today, months, 1);
-const premierJofNextMonth = getFirstDayMonth(weeks, months, nextMonth);
+const premierJofNextMonth = getFirstDay(weeks, months, nextMonth);
 console.log(premierJofNextMonth)
 
 
-let counter = 1;
-
-calendarBody.forEach((day, index) => {
+arrows.forEach((arrow, index) => {
     const button = document.createElement("button");
-    day.appendChild(button);
-    
-    
-    if(index >= avant.day[2] && index < (avant.day[2] + ajd.month[2])){
-        button.textContent = counter;
-        button.addEventListener("click", () =>{ 
-            
-            
-            return button.textContent;
-        });
-        counter ++
-    } else {
-        button.setAttribute("disabled", "true")
-    }
+    index === 0 ? button.textContent = "<" : button.textContent = ">";
+
+    arrow.appendChild(button)
 });
+
+
+
+
+
+
+createCalendar(avant, ajd);
+
 
 
 export * from "./calendar-test"
