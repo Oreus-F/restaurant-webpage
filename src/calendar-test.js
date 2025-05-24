@@ -2,30 +2,46 @@ const test = document.querySelector("#test");
 
 
 const months = {
-    0: ["Janvier", "January", 31],
-    1: ["Février", "Febuary", 28],
-    2: ["Mars", "March", 31],
-    3: ["Avril", "April", 30],
-    4: ["Mai", "May", 31],
-    5: ["Juin", "June", 30],
-    6: ["Juillet", "July", 31],
-    7: ["Août", "August", 31],
-    8: ["Septembre", "September", 30],
-    9: ["Octobre", "October", 31],
-    10: ["Novembre", "November", 30],
-    11: ["Décembre", "December", 31],
+    0: ["janvier", "january", 31],
+    1: ["février", "febuary", 28],
+    2: ["mars", "march", 31],
+    3: ["avril", "april", 30],
+    4: ["mai", "may", 31],
+    5: ["juin", "june", 30],
+    6: ["juillet", "july", 31],
+    7: ["août", "august", 31],
+    8: ["septembre", "september", 30],
+    9: ["octobre", "october", 31],
+    10: ["novembre", "november", 30],
+    11: ["décembre", "december", 31],
 
 };
 
 
 const weeks = {
-    0 : ["Dimanche", "Sunday", 6],
-    1 : ["Lundi", "Monday", 0],
-    2 : ["Mardi", "Tuesday", 1],
-    3 : ["Mercredi", "Wednesday", 2],
-    4 : ["Jeudi", "Thursday", 3],
-    5 : ["Vendredi", "Friday", 4],
-    6 : ["Samedi", "Saturday", 5],
+    0 : ["dimanche", "sunday", 6],
+    1 : ["lundi", "monday", 0],
+    2 : ["mardi", "tuesday", 1],
+    3 : ["mercredi", "wednesday", 2],
+    4 : ["jeudi", "thursday", 3],
+    5 : ["vendredi", "friday", 4],
+    6 : ["samedi", "sturday", 5],
+};
+
+
+const getDayInfo = function(mois, jour, annee){
+    let date;
+    if (mois && jour && annee) {
+        date = new Date(`${annee}-${mois}-${jour}`);
+    } else {
+        date = new Date();
+    }
+    const month = wichMonth(date, months);
+    const firstDay = getFirstDay(date, weeks, months)
+    const full = getFullDate(date, weeks, months);
+
+    const all = {date, month, firstDay, full};
+    return all
 };
 
 
@@ -43,23 +59,18 @@ const wichDay = function(date, weeks){
 }
 
 
-const getFullDate = function(weeks, months){
-    let today = new Date();
-
-    const day = wichDay(today, weeks);
-    const date = today.getDate();
-    const month = wichMonth(today, months);
-    const year = today.getFullYear();
+const getFullDate = function(ref, weeks, months){
+    const day = wichDay(ref, weeks);
+    const date = ref.getDate();
+    const month = wichMonth(ref, months);
+    const year = ref.getFullYear();
 
     const obj = {day, date, month, year}
-
-    console.log(obj);
     return obj;
 }
 
 
-const getFirstDay = function(weeks, months, specificMonth){
-    const today = new Date();
+const getFirstDay = function(today, weeks, months, specificMonth){
     let firstDay;
     let month;
     let year;
@@ -82,12 +93,11 @@ const getFirstDay = function(weeks, months, specificMonth){
 
     const obj = {day, date, month, year}
 
-    console.log(obj);
     return obj;
 }
 
 
-const createCalendar = function(first, actual = {date : 1}){
+const createCalendar = function(firstDay, actual = {date : 1}){
     let counter = 1;
 
 
@@ -96,7 +106,7 @@ const createCalendar = function(first, actual = {date : 1}){
         day.appendChild(button);
         
         
-        if(index >= first.day[2] && index < (first.day[2] + first.month[2])){
+        if(index >= firstDay.day[2] && index < (firstDay.day[2] + firstDay.month[2])){
             button.textContent = counter;
             
 
@@ -119,10 +129,42 @@ const createCalendar = function(first, actual = {date : 1}){
     });
 }
 
+
 const removeCalendar = function(){
     calendarBody.forEach(item => item.replaceChildren())
 }
 
+
+const increaseMonth = function(today){
+    const caption = document.querySelector("caption");
+    let nextMonth = wichMonth(today.date, months, 1);
+    
+    const ref = [today.month, nextMonth];
+    let displayedMonth = caption.textContent.toLowerCase();
+    let firstDay =  getFirstDay(today.date, weeks, months, nextMonth);
+    
+    if (ref[0].includes(displayedMonth)) {
+        
+        removeCalendar();
+        createCalendar(firstDay);
+        caption.textContent = nextMonth[0];
+
+    } else if (ref[1].includes(displayedMonth)){
+
+        const newMonth = getDayInfo(nextMonth[1], firstDay.date, firstDay.year);
+        console.log(newMonth.date)
+        nextMonth = wichMonth(newMonth.date, months, 1);
+        firstDay = getFirstDay(newMonth.date, weeks, months, nextMonth);
+        removeCalendar();
+        createCalendar(firstDay);
+        caption.textContent = nextMonth[0];
+
+    } else {
+        alert("Ces dates ne sont pas encore disponible");
+    }
+    
+    
+}
 
 /* TEST CREA TABLEAU UTILE */
 
@@ -130,30 +172,30 @@ const calendarBody = document.querySelectorAll("td");
 const arrow = document.querySelector("#arrow");
 const arrows = arrow.querySelectorAll("th");
 
-const ajd = getFullDate(weeks, months);
-const avant = getFirstDay(weeks, months);
 
 
-const today = new Date();
 
-const nextMonth = wichMonth(today, months, 1);
-const premierJofNextMonth = getFirstDay(weeks, months, nextMonth);
-console.log(premierJofNextMonth)
+
 
 
 arrows.forEach((arrow, index) => {
     const button = document.createElement("button");
-    index === 0 ? button.textContent = "<" : button.textContent = ">";
+    if (index === 0) { 
+        button.textContent = "<"
+
+    } else {
+        button.textContent = ">";
+        button.addEventListener("click", () => {increaseMonth(today)})
+    }
 
     arrow.appendChild(button)
 });
 
 
+const today = getDayInfo();
 
+createCalendar(today.firstDay, today.full);
 
-
-
-createCalendar(avant, ajd);
 
 
 
