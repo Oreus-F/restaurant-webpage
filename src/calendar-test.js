@@ -37,11 +37,12 @@ const getDayInfo = function(mois, jour, annee){
         date = new Date();
     }
     const month = wichMonth(date, months);
-    const firstDay = getFirstDay(date, weeks, months)
-    const full = getFullDate(date, weeks, months);
+    const week = wichWeek(date, weeks);
+    const day = date.getDate();
+    const year = date.getFullYear();
 
-    const all = {date, month, firstDay, full};
-    return all
+    const obj = {date, day, week, month, year};
+    return obj
 };
 
 
@@ -53,53 +54,17 @@ const wichMonth = function(date, months, index){
 };
 
 
-const wichDay = function(date, weeks){
+const wichWeek = function(date, weeks){
     let result = date.getDay();
     return weeks[result]
 }
 
 
-const getFullDate = function(ref, weeks, months){
-    const day = wichDay(ref, weeks);
-    const date = ref.getDate();
-    const month = wichMonth(ref, months);
-    const year = ref.getFullYear();
-
-    const obj = {day, date, month, year}
-    return obj;
-}
-
-
-const getFirstDay = function(today, weeks, months, specificMonth){
-    let firstDay;
-    let month;
-    let year;
-    
-    if(specificMonth){
-        month = specificMonth;
-        year = today.getFullYear();
-        firstDay = new Date(`${month[1]} 1, ${year}`)
-
-    } else {
-        month = wichMonth(today, months);
-        year = today.getFullYear();
-
-        firstDay = new Date(`${month[1]} 1, ${year}`)
-    }
-
-
-    const date = firstDay.getDate();
-    const day = wichDay(firstDay, weeks);
-
-    const obj = {day, date, month, year}
-
-    return obj;
-}
-
-
 const createCalendar = function(firstDay, actual = {date : 1}){
+    let calendarBody = document.querySelectorAll("td");
+
     let counter = 1;
-    let allMonth = (firstDay.day[2] + firstDay.month[2]);
+    let allMonth = (firstDay.week[2] + firstDay.month[2]);
 
     if (allMonth > calendarBody.length){
         const tr = document.createElement("tr");
@@ -114,16 +79,16 @@ const createCalendar = function(firstDay, actual = {date : 1}){
     }
     
 
-    calendarBody.forEach((day, index) => {
+    calendarBody.forEach((td, index) => {
         const button = document.createElement("button");
-        day.appendChild(button);
+        td.appendChild(button);
         
         
-        if(index >= firstDay.day[2] && index < (allMonth)){
+        if(index >= firstDay.week[2] && index < (allMonth)){
             button.textContent = counter;
             
 
-            if (button.textContent < actual.date){
+            if (button.textContent < actual.day){
                 button.setAttribute("disabled", "true");
             } else {
                 button.addEventListener("click", () => { 
@@ -133,10 +98,11 @@ const createCalendar = function(firstDay, actual = {date : 1}){
                 });
             }
 
-            
-            
             counter ++
+            
+            
         } else {
+
             button.setAttribute("disabled", "true")
         }
     });
@@ -144,6 +110,8 @@ const createCalendar = function(firstDay, actual = {date : 1}){
 
 
 const removeCalendar = function(){
+    let calendarBody = document.querySelectorAll("td");
+
     if (calendarBody.length > 35){
         const extraChild = calendar.querySelectorAll("tr");
         calendar.removeChild(extraChild[extraChild.length - 1])
@@ -154,26 +122,28 @@ const removeCalendar = function(){
 
 const increaseMonth = function(today){
     const caption = document.querySelector("caption");
-    let nextMonth = wichMonth(today.date, months, 1);
-    
-    const ref = [today.month, nextMonth];
     let displayedMonth = caption.textContent.toLowerCase();
-    let firstDay =  getFirstDay(today.date, weeks, months, nextMonth);
+    let year = displayedMonth === "décembre" ? year +=1 : today.year;
     
-    if (ref[0].includes(displayedMonth)) {
+    const N1Month = wichMonth(today.date, months, 1);
+    const N1firstDate =  getDayInfo(N1Month[1], 1, year);
+    
+
+    const N2Month = wichMonth(N1firstDate.date, months, 1);
+    const N2firstDate = getDayInfo(N2Month[1], 1, year);
+
+    
+    if (displayedMonth === today.month[0]) {
         
         removeCalendar();
-        createCalendar(firstDay);
-        caption.textContent = nextMonth[0];
+        createCalendar(N1firstDate);
+        caption.textContent = N1Month[0];
 
-    } else if (ref[1].includes(displayedMonth)){
+    } else if (displayedMonth === N1Month[0]){
 
-        const newMonth = getDayInfo(nextMonth[1], firstDay.date, firstDay.year);
-        nextMonth = wichMonth(newMonth.date, months, 1);
-        firstDay = getFirstDay(newMonth.date, weeks, months, nextMonth);
         removeCalendar();
-        createCalendar(firstDay);
-        caption.textContent = nextMonth[0];
+        createCalendar(N2firstDate);
+        caption.textContent = N2Month[0];
 
     } else {
         alert("Ces dates ne sont pas encore disponible");
@@ -182,14 +152,37 @@ const increaseMonth = function(today){
     
 }
 
+
+const decreaseMonth = function(today){
+    const caption = document.querySelector("caption");
+    let displayedMonth = caption.textContent.toLowerCase();
+    let year = displayedMonth === "janvier" ? year -=1 : today.year;
+
+    const N1Month = wichMonth(today.date, months, 1);
+    const N1firstDate =  getDayInfo(N1Month[1], 1, year);
+
+    const N2Month = wichMonth(N1firstDate.date, months, 1);
+
+    if(displayedMonth === N2Month[0]){
+        removeCalendar();
+        createCalendar(N1firstDate);
+        caption.textContent = N1Month[0];
+    } else if (displayedMonth === N1Month[0]){
+        removeCalendar();
+        createCalendar(Todays1st, today);
+        caption.textContent = today.month[0]
+    };
+}
+
 /* TEST CREA TABLEAU UTILE */
 
 const calendar = document.querySelector("#calendar");
-let calendarBody = document.querySelectorAll("td");
 const arrow = document.querySelector("#arrow");
 const arrows = arrow.querySelectorAll("th");
 
 
+const today = getDayInfo();
+const Todays1st = getDayInfo(today.month[1], 1, today.year)
 
 
 
@@ -199,6 +192,7 @@ arrows.forEach((arrow, index) => {
     const button = document.createElement("button");
     if (index === 0) { 
         button.textContent = "<"
+        button.addEventListener("click", () => decreaseMonth(today))
 
     } else {
         button.textContent = ">";
@@ -209,9 +203,8 @@ arrows.forEach((arrow, index) => {
 });
 
 
-const today = getDayInfo();
-
-createCalendar(today.firstDay, today.full);
+console.log(today.day)
+createCalendar(Todays1st, today);
 
 
 
