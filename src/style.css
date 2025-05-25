@@ -257,12 +257,8 @@ nav > button {
     inset: 0;
     margin: auto;
     border: none;
-}
-
-#reservation form {
     width: 50%;
     height: 60dvh;
-
 }
 
 
@@ -311,4 +307,21 @@ td > button {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
+}
+
+
+#bookingInfo.hour {
+    display: flex;
+    flex-direction: column;
+}
+
+#bookingInfo.hour button{
+    height: 4rem;
+    transition: 400ms;
+}
+
+
+#bookingInfo.hour button:hover{
+    height: 4.5rem;
+    transition: 400ms;
 }
