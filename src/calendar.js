@@ -1,3 +1,90 @@
+// DISPLAY 
+
+const changeDisplay = function(){
+    const div = document.querySelector("#bookingInfo");
+    div.replaceChildren();
+};
+
+
+const displayCalendar = function(){
+    createDialog();
+    createTable();
+    activateArrows(today);
+    createCalendar(Todays1st, today);
+
+    const dialog = document.querySelector("#reservation");
+    dialog.showModal();
+}
+
+
+const displayHour = function(today){
+    const hour = today.hour;
+
+    changeDisplay();
+    createHours(intervalHours, hour);    
+
+};
+
+
+const displayPerson =  function(){
+    changeDisplay();
+    createPerson();
+}
+
+const displayRecap = function(recap){
+    changeDisplay();
+    createRecap();
+}
+
+
+// INFOS
+
+
+const getInfos = function(mois, jour, annee){
+    let date;
+    if (mois && jour && annee) {
+        date = new Date(`${annee}-${mois}-${jour}`);
+    } else {
+        date = new Date();
+    }
+    const month = wichMonth(date, months);
+    const week = wichWeek(date, weeks);
+    const day = date.getDate();
+    const year = date.getFullYear();
+    const hour = getHours(date);
+
+    const obj = {date, day, week, month, year, hour};
+    return obj
+};
+
+
+const wichMonth = function(date, months, index){
+    let result = date.getMonth();
+
+    if (index) {result = result + index}
+    return months[result];
+};
+
+
+const wichWeek = function(date, weeks){
+    let result = date.getDay();
+    return weeks[result]
+}
+
+
+const getHours = function(today){
+    let hour = today.getHours();
+    let min = today.getMinutes();
+    if (min < 10) {min = min.toString().padStart(2, 0);};
+    const result = `${hour.toString()}.${min}`
+    
+    return result;
+}
+
+
+// VARIABLES
+
+
 const months = {
     0: ["janvier", "january", 31],
     1: ["février", "febuary", 28],
@@ -25,36 +112,20 @@ const weeks = {
     6 : ["samedi", "sturday", 5],
 };
 
+const intervalHours = [
+    "12.00", "12.30", "13.00", 
+    "13.30", "14.00", "14.30", "15.00", 
+    "19.00", "19.30", "20.00", "20.30",
+    "21.00", "21.30", "22.00", "22.30",
+];
 
-const getDayInfo = function(mois, jour, annee){
-    let date;
-    if (mois && jour && annee) {
-        date = new Date(`${annee}-${mois}-${jour}`);
-    } else {
-        date = new Date();
-    }
-    const month = wichMonth(date, months);
-    const week = wichWeek(date, weeks);
-    const day = date.getDate();
-    const year = date.getFullYear();
-
-    const obj = {date, day, week, month, year};
-    return obj
+const openHours = {
+    day : ["12.00", "14.30"],
+    night : ["19.00", "22.30"]
 };
 
 
-const wichMonth = function(date, months, index){
-    let result = date.getMonth();
-
-    if (index) {result = result + index}
-    return months[result];
-};
-
-
-const wichWeek = function(date, weeks){
-    let result = date.getDay();
-    return weeks[result]
-}
+/* PICK A DAY */
 
 
 const createCalendar = function(firstDay, actual = {date : 1}){
@@ -90,20 +161,20 @@ const createCalendar = function(firstDay, actual = {date : 1}){
             if (button.textContent < actual.day){
                 button.setAttribute("disabled", "true");
             } else {
-                button.addEventListener("click", () => { 
-                
-                
-                    return button.textContent;
+                button.addEventListener("click", () => {
+                    displayHour(today) 
+                    console.log(button.textContent);
                 });
             }
 
             counter ++
-            
-            
         } else {
 
             button.setAttribute("disabled", "true")
+
         }
+
+        if((actual.hour > "21.30") && (button.textContent == actual.day)) button.setAttribute("disabled", "true")
     });
 }
 
@@ -125,11 +196,11 @@ const increaseMonth = function(today){
     let year = displayedMonth === "décembre" ? year +=1 : today.year;
     
     const N1Month = wichMonth(today.date, months, 1);
-    const N1firstDate =  getDayInfo(N1Month[1], 1, year);
+    const N1firstDate =  getInfos(N1Month[1], 1, year);
     
 
     const N2Month = wichMonth(N1firstDate.date, months, 1);
-    const N2firstDate = getDayInfo(N2Month[1], 1, year);
+    const N2firstDate = getInfos(N2Month[1], 1, year);
 
     
     if (displayedMonth === today.month[0]) {
@@ -157,10 +228,10 @@ const decreaseMonth = function(today){
     let displayedMonth = caption.textContent.toLowerCase();
     let year = displayedMonth === "janvier" ? year -=1 : today.year;
 
-    const N0firstDate = getDayInfo(today.month[1], 1, today.year);
+    const N0firstDate = getInfos(today.month[1], 1, today.year);
 
     const N1Month = wichMonth(today.date, months, 1);
-    const N1firstDate =  getDayInfo(N1Month[1], 1, year);
+    const N1firstDate =  getInfos(N1Month[1], 1, year);
 
     const N2Month = wichMonth(N1firstDate.date, months, 1);
 
@@ -192,7 +263,8 @@ const createDialog = function(){
 
 const createTable = function(){
 
-    const div = document.querySelector("#bookingInfo")
+    const div = document.querySelector("#bookingInfo");
+    div.classList.toggle("day");
 
     const table = document.createElement("table");
     table.setAttribute("id", "calendar");
@@ -254,18 +326,69 @@ const activateArrows = function(today){
 }
 
 
-const displayCalendar = function(){
-    const today = getDayInfo();
-    const Todays1st = getDayInfo(today.month[1], 1, today.year);
+/* HOURS */
 
-    createDialog();
-    createTable();
-    activateArrows(today);
-    createCalendar(Todays1st, today);
 
-    const dialog = document.querySelector("#reservation");
-    dialog.showModal();
+const createHours = function(intervalHours, hour){
+    const div = document.querySelector('#bookingInfo');
+    div.classList.toggle("hour");
+    div.classList.toggle("day");
+    let available = intervalHours.filter((interval) => interval > hour);
+
+
+    for(let x=0; x < available.length; x++){
+        const button = document.createElement("button");
+        button.textContent = available[x];
+        button.addEventListener("click", () => {
+            console.log(button.textContent)
+            displayPerson();
+        });
+
+        div.appendChild(button)
+    }
 }
 
 
+// PERSON
+
+const createPerson = function(){
+    const div = document.querySelector('#bookingInfo');
+    div.classList.toggle("hour");
+    div.classList.toggle("person");
+
+    for (let x = 1; x < 13; x++){
+        const button = document.createElement("button");
+        button.textContent = x;
+        button.addEventListener("click", () => {
+            console.log(button.textContent)
+        })
+
+        div.appendChild(button)
+    }
+}
+
+
+// RECAP
+
+
+const createRecap = function(recap){
+    const div = document.querySelector('#bookingInfo');
+    div.classList.toggle("person");
+    div.classList.toggle("recap");
+
+    
+}
+
+
+
+const dialog = document.querySelector("#reservation");
+
+const today = getInfos();
+const Todays1st = getInfos(today.month[1], 1, today.year);
+
+// dialog.showModal();
+
+// displayHour(today)
+
+export {displayHour}
 export default displayCalendar 
