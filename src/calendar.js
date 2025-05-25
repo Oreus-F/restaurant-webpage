@@ -1,6 +1,3 @@
-const test = document.querySelector("#test");
-
-
 const months = {
     0: ["janvier", "january", 31],
     1: ["février", "febuary", 28],
@@ -62,6 +59,8 @@ const wichWeek = function(date, weeks){
 
 const createCalendar = function(firstDay, actual = {date : 1}){
     let calendarBody = document.querySelectorAll("td");
+    const caption = document.querySelector("caption");
+    caption.textContent = firstDay.month[0];
 
     let counter = 1;
     let allMonth = (firstDay.week[2] + firstDay.month[2]);
@@ -176,14 +175,51 @@ const decreaseMonth = function(today){
     };
 }
 
-const displayBookingCalendar = function(){
-    const calendar = document.querySelector("#calendar");
+
+const createTable = function(){
+    const div = document.querySelector("#bookingInfo");
+    const table = document.createElement("table");
+    table.setAttribute("id", "calendar");
+    const caption = document.createElement("caption");
+    table.appendChild(caption)
+
+
+    const rowArrow = document.createElement("tr");
+    rowArrow.setAttribute("id", "arrow");
+    const left = document.createElement("th");
+    const right = document.createElement("th");
+    right.setAttribute("colspan", "6");
+    rowArrow.appendChild(left);
+    rowArrow.appendChild(right);
+    table.appendChild(rowArrow);
+
+    const days = ["L", "M", "M", "J", "V", "S", "D"];
+    const rowDay = document.createElement("tr");
+    for (let i = 0; i < days.length; i++){
+        const th = document.createElement("th");
+        th.textContent = days[i];
+        rowDay.appendChild(th);
+    };
+    table.appendChild(rowDay);
+
+
+    for(let x = 0; x < 5; x++){
+        const tr = document.createElement("tr");
+        for(let y = 0; y < 7; y++){
+            const td = document.createElement("td");
+            tr.appendChild(td);
+        };
+        table.appendChild(tr);
+    };
+
+
+    div.appendChild(table);
+}
+
+
+const activateArrows = function(today){
     const arrow = document.querySelector("#arrow");
     const arrows = arrow.querySelectorAll("th");
-    
-    
-    const today = getDayInfo();
-    const Todays1st = getDayInfo(today.month[1], 1, today.year);
     
     arrows.forEach((arrow, index) => {
         const button = document.createElement("button");
@@ -198,8 +234,16 @@ const displayBookingCalendar = function(){
     
         arrow.appendChild(button)
     });
-    
-    
+      
+}
+
+
+const displayCalendar = function(){
+    const today = getDayInfo();
+    const Todays1st = getDayInfo(today.month[1], 1, today.year);
+
+    createTable();
+    activateArrows(today);
     createCalendar(Todays1st, today);
 }
 
@@ -214,4 +258,4 @@ const displayBookingCalendar = function(){
 
 
 
-export default displayBookingCalendar 
+export default displayCalendar 
