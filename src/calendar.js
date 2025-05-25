@@ -176,8 +176,24 @@ const decreaseMonth = function(today){
 }
 
 
+const createDialog = function(){
+    const content = document.querySelector("#content");
+
+    const dialog = document.createElement("dialog");
+    dialog.setAttribute("id", "reservation");
+
+    const div = document.createElement("div");
+    div.setAttribute("id", "bookingInfo");
+
+    dialog.appendChild(div);
+    content.appendChild(dialog);
+}
+
+
 const createTable = function(){
-    const div = document.querySelector("#bookingInfo");
+
+    const div = document.querySelector("#bookingInfo")
+
     const table = document.createElement("table");
     table.setAttribute("id", "calendar");
     const caption = document.createElement("caption");
@@ -242,20 +258,14 @@ const displayCalendar = function(){
     const today = getDayInfo();
     const Todays1st = getDayInfo(today.month[1], 1, today.year);
 
+    createDialog();
     createTable();
     activateArrows(today);
     createCalendar(Todays1st, today);
+
+    const dialog = document.querySelector("#reservation");
+    dialog.showModal();
 }
-
-/* TEST CREA TABLEAU UTILE */
-
-
-
-
-
-
-
-
 
 
 export default displayCalendar 
