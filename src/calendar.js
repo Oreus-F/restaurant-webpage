@@ -1,5 +1,56 @@
 // DISPLAY 
 
+const createDialog = function(){
+    const content = document.querySelector("#content");
+
+    const dialog = document.createElement("dialog");
+    dialog.setAttribute("id", "reservation");
+
+    const div = document.createElement("div");
+    const title = document.createElement("h1");
+    title.textContent = "réservation";
+    div.appendChild(title)
+    dialog.appendChild(div);
+
+    const widget = createWidget();
+    dialog.appendChild(widget);
+
+
+    const booking = document.createElement("div");
+    booking.setAttribute("id", "bookingInfo");
+
+    dialog.appendChild(booking);
+    content.appendChild(dialog);
+}
+
+
+
+const createWidget = function() {
+    const visualRecap = document.createElement("div");
+    const bookingWidget = document.createElement("div");
+    bookingWidget.setAttribute("id", "widget")
+
+    for (let x=0; x <4; x++){
+        const button = document.createElement("button");
+        const icon = document.createElement("div");
+        button.appendChild(icon)
+        if (x < 3){
+            const separator = document.createElement("div");
+            button.appendChild(separator);
+        };
+
+        button.addEventListener("click", () => {
+            console.log("ah wili wili ta mere le kiwi")
+        });
+
+        bookingWidget.appendChild(button);
+    };
+
+    visualRecap.appendChild(bookingWidget);
+    return visualRecap;
+}
+
+
 const changeDisplay = function(){
     const div = document.querySelector("#bookingInfo");
     div.replaceChildren();
@@ -169,7 +220,7 @@ const createCalendar = function(firstDay, actual = {date : 1}){
 
             counter ++
         } else {
-
+            button.setAttribute("data-date", "none")
             button.setAttribute("disabled", "true")
 
         }
@@ -191,6 +242,9 @@ const removeCalendar = function(){
 
 
 const increaseMonth = function(today){
+    const arrow = document.querySelector("#arrow");
+    const arrows = arrow.querySelectorAll("button");
+
     const caption = document.querySelector("caption");
     let displayedMonth = caption.textContent.toLowerCase();
     let year = displayedMonth === "décembre" ? year +=1 : today.year;
@@ -204,19 +258,17 @@ const increaseMonth = function(today){
 
     
     if (displayedMonth === today.month[0]) {
-        
+        arrows[0].removeAttribute("disabled");
         removeCalendar();
         createCalendar(N1firstDate);
         caption.textContent = N1Month[0];
 
     } else if (displayedMonth === N1Month[0]){
-
+        arrows[1].setAttribute("disabled", "true");
         removeCalendar();
         createCalendar(N2firstDate);
         caption.textContent = N2Month[0];
 
-    } else {
-        alert("Ces dates ne sont pas encore disponible");
     }
     
     
@@ -224,6 +276,9 @@ const increaseMonth = function(today){
 
 
 const decreaseMonth = function(today){
+    const arrow = document.querySelector("#arrow");
+    const arrows = arrow.querySelectorAll("button");
+
     const caption = document.querySelector("caption");
     let displayedMonth = caption.textContent.toLowerCase();
     let year = displayedMonth === "janvier" ? year -=1 : today.year;
@@ -236,28 +291,16 @@ const decreaseMonth = function(today){
     const N2Month = wichMonth(N1firstDate.date, months, 1);
 
     if(displayedMonth === N2Month[0]){
+        arrows[1].removeAttribute("disabled")
         removeCalendar();
         createCalendar(N1firstDate);
         caption.textContent = N1Month[0];
     } else if (displayedMonth === N1Month[0]){
+        arrows[0].setAttribute("disabled", "true");
         removeCalendar();
         createCalendar(N0firstDate, today);
         caption.textContent = today.month[0]
     };
-}
-
-
-const createDialog = function(){
-    const content = document.querySelector("#content");
-
-    const dialog = document.createElement("dialog");
-    dialog.setAttribute("id", "reservation");
-
-    const div = document.createElement("div");
-    div.setAttribute("id", "bookingInfo");
-
-    dialog.appendChild(div);
-    content.appendChild(dialog);
 }
 
 
@@ -314,6 +357,7 @@ const activateArrows = function(today){
         if (index === 0) { 
             button.textContent = "<"
             button.addEventListener("click", () => decreaseMonth(today))
+            button.setAttribute("disabled", "true");
     
         } else {
             button.textContent = ">";
@@ -375,7 +419,6 @@ const createRecap = function(recap){
     const div = document.querySelector('#bookingInfo');
     div.classList.toggle("person");
     div.classList.toggle("recap");
-
     
 }
 
@@ -390,5 +433,4 @@ const Todays1st = getInfos(today.month[1], 1, today.year);
 
 // displayHour(today)
 
-export {displayHour}
 export default displayCalendar 
