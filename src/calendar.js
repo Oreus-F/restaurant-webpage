@@ -382,6 +382,11 @@ const createHours = function(intervalHours, hour){
     const div = document.querySelector('#bookingInfo');
     div.classList.toggle("hour");
     div.classList.toggle("day");
+
+    const title = document.createElement("h2");
+    title.textContent = "Sélectionnez une heure";
+    div.appendChild(title);
+
     const available = intervalHours;
     // const available = intervalHours.filter((interval) => interval > hour);
 
