@@ -81,9 +81,9 @@ const displayPerson =  function(info){
 }
 
 
-const displayRecap = function(recap){
+const displayRecap = function(info){
     changeDisplay();
-    createRecap();
+    createRecap(info);
 }
 
 
@@ -459,31 +459,119 @@ const createPerson = function(info){
     div.classList.toggle("hour");
     div.classList.toggle("person");
 
+    const title = document.createElement("h2");
+    title.textContent = "Nombre de personne";
+    div.appendChild(title);
 
+    const container = document.createElement("div");
 
-    for (let x = 1; x < 13; x++){
+    for (let x = 1; x < 21; x++){
         const button = document.createElement("button");
         button.textContent = x;
         button.addEventListener("click", () => {
             info.person = button.textContent;
-            console.log(info)
+            displayRecap(info);
         })
 
-        div.appendChild(button)
-    }
+        container.appendChild(button);
+    };
+
+    div.appendChild(container)
 }
 
 
 // RECAP
 
 
-const createRecap = function(recap){
+const createRecap = function(info){
     const div = document.querySelector('#bookingInfo');
     div.classList.toggle("person");
     div.classList.toggle("recap");
     
+    const recap = showRecap(info);
+    div.appendChild(recap);
+    const form = createForm(info);
+    div.appendChild(form);
+    
 }
 
+
+const showRecap = function(info){
+    const div = document.createElement("div");
+    const container = document.createElement("div");
+
+    const title = document.createElement("h3");
+    title.textContent = "Odin's Crepe";
+
+    const day = document.createElement("span");
+    day.textContent = `${info.day} ${info.month}`;
+
+    const separator1 = document.createElement("span");
+    separator1.textContent = ".";
+
+    const hour = document.createElement("span");
+    hour.textContent = info.hour;
+
+    const separator2 = document.createElement("span");
+    separator2.textContent = ".";
+
+    const person = document.createElement("span");
+    person.textContent = `${info.person} Pers.`;
+
+    div.appendChild(title);
+    container.appendChild(day);
+    container.appendChild(separator1);
+    container.appendChild(hour);
+    container.appendChild(separator2);
+    container.appendChild(person);
+
+    div.appendChild(container);
+    return div
+}
+
+const createForm = function(info){
+    const div =  document.createElement("div");
+    
+    const form = document.createElement("form");
+
+
+    const p = document.createElement("p");
+    p.textContent = "Entrez votre e-mail pour compléter votre réservation";
+    form.appendChild(p);
+
+
+    const label = document.createElement("label");
+    const span = document.createElement("span");
+    span.textContent = "Adresse e-mail*";
+    label.appendChild(span);
+    form.appendChild(label);
+
+    const input = document.createElement("input");
+    input.setAttribute("type", "email");
+    input.setAttribute("name", "email");
+    input.setAttribute("required", "true");
+    input.setAttribute("placeholder", "Votre adresse e-mail")
+    form.appendChild(input);
+
+
+    const comment = document.createElement("textarea");
+    comment.setAttribute("placeholder", "pour plus d'informations concernant des allergies ou autres");
+    form.appendChild(comment);
+
+
+
+
+    const button = document.createElement("button");
+    button.textContent = "compléter";
+    form.appendChild(button);
+
+
+
+
+
+    div.appendChild(form);
+    return div
+}
 
 
 const dialog = document.querySelector("#reservation");
