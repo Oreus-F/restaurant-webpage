@@ -375,7 +375,6 @@ const activateArrows = function(today){
 
 const createHours = function(intervalHours, hour){
     const div = document.querySelector('#bookingInfo');
-    const container = document.createElement("div");
     div.classList.toggle("hour");
     div.classList.toggle("day");
     let available = intervalHours.filter((interval) => interval > hour);
@@ -389,10 +388,8 @@ const createHours = function(intervalHours, hour){
             displayPerson();
         });
 
-        container.appendChild(button)
+        div.appendChild(button)
     }
-
-    div.appendChild(container)
 }
 
 
