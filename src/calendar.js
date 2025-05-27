@@ -377,20 +377,69 @@ const createHours = function(intervalHours, hour){
     const div = document.querySelector('#bookingInfo');
     div.classList.toggle("hour");
     div.classList.toggle("day");
-    let available = intervalHours.filter((interval) => interval > hour);
+    const available = intervalHours;
+    // const available = intervalHours.filter((interval) => interval > hour);
 
+    if(available[0] < "15.30"){
+        const dej = displayDej(available);
+        div.appendChild(dej);
+    };
 
-    for(let x=0; x < available.length; x++){
-        const button = document.createElement("button");
-        button.textContent = available[x];
-        button.addEventListener("click", () => {
-            console.log(button.textContent)
-            displayPerson();
-        });
-
-        div.appendChild(button)
-    }
+    const diner = displayDiner(available);
+    div.appendChild(diner);
 }
+
+
+const displayDej = function(interval){
+    const div = document.createElement("div");
+    const dej = document.createElement("p");
+    dej.textContent = "déjeuner";
+    div.appendChild(dej);
+
+    for(let x=0; x < interval.length; x++){
+
+        if(interval[x] < "15.30"){
+
+            const button = document.createElement("button");
+            const hour = interval[x].replace(".", ":");
+            button.textContent = hour;
+            button.addEventListener("click", () => {
+                console.log(button.textContent)
+                displayPerson();
+            });
+
+            div.appendChild(button)
+        };
+    };
+    
+    return div;
+};
+
+
+const displayDiner = function(interval){
+    const div = document.createElement("div");
+    const diner = document.createElement("p");
+    diner.textContent = "diner";
+    div.appendChild(diner);
+
+    for(let x=0; x < interval.length; x++){
+
+        if(interval[x] > "15.30"){
+
+            const button = document.createElement("button");
+            const hour = interval[x].replace(".", ":");
+            button.textContent = hour;
+            button.addEventListener("click", () => {
+                console.log(button.textContent)
+                displayPerson();
+            });
+
+            div.appendChild(button)
+        };
+    };
+    
+    return div;
+};
 
 
 // PERSON
