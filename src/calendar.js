@@ -40,7 +40,6 @@ const createWidget = function() {
         };
 
         button.addEventListener("click", () => {
-            console.log("ah wili wili ta mere le kiwi")
         });
 
         bookingWidget.appendChild(button);
@@ -68,18 +67,17 @@ const displayCalendar = function(){
 }
 
 
-const displayHour = function(today){
-    const hour = today.hour;
+const displayHour = function(info){
 
     changeDisplay();
-    createHours(intervalHours, hour);    
+    createHours(intervalHours, info.hour, info);    
 
 };
 
 
-const displayPerson =  function(){
+const displayPerson =  function(info){
     changeDisplay();
-    createPerson();
+    createPerson(info);
 }
 
 
@@ -184,7 +182,7 @@ const openHours = {
 /* PICK A DAY */
 
 
-const createCalendar = function(firstDay, actual = {date : 1}){
+const createCalendar = function(firstDay, actual = firstDay){
     let calendarBody = document.querySelectorAll("td");
     const caption = document.querySelector("caption");
     caption.textContent = firstDay.month[0];
@@ -218,8 +216,12 @@ const createCalendar = function(firstDay, actual = {date : 1}){
                 button.setAttribute("disabled", "true");
             } else {
                 button.addEventListener("click", () => {
-                    displayHour(today) 
-                    console.log(button.textContent);
+                    let info = {
+                        day: button.textContent,
+                        month: actual.month[0],
+                        hour: (button.textContent != actual.day) ? firstDay.hour : actual.hour,
+                    }
+                    displayHour(info);
                 });
             }
 
@@ -230,7 +232,7 @@ const createCalendar = function(firstDay, actual = {date : 1}){
 
         }
 
-        if((actual.hour > "21.30") && (button.textContent == actual.day)) button.setAttribute("disabled", "true")
+        if((actual.hour > "22.00") && (button.textContent == actual.day)) button.setAttribute("disabled", "true")
     });
 }
 
@@ -378,7 +380,7 @@ const activateArrows = function(today){
 /* HOURS */
 
 
-const createHours = function(intervalHours, hour){
+const createHours = function(intervalHours, hour, info){
     const div = document.querySelector('#bookingInfo');
     div.classList.toggle("hour");
     div.classList.toggle("day");
@@ -387,20 +389,19 @@ const createHours = function(intervalHours, hour){
     title.textContent = "Sélectionnez une heure";
     div.appendChild(title);
 
-    const available = intervalHours;
-    // const available = intervalHours.filter((interval) => interval > hour);
+    const available = intervalHours.filter((interval) => interval > hour);
 
     if(available[0] < "15.30"){
-        const dej = displayDej(available);
+        const dej = displayDej(available, info);
         div.appendChild(dej);
     };
 
-    const diner = displayDiner(available);
+    const diner = displayDiner(available, info);
     div.appendChild(diner);
 }
 
 
-const displayDej = function(interval){
+const displayDej = function(interval, info){
     const div = document.createElement("div");
     const dej = document.createElement("p");
     dej.textContent = "déjeuner";
@@ -414,8 +415,8 @@ const displayDej = function(interval){
             const hour = interval[x].replace(".", ":");
             button.textContent = hour;
             button.addEventListener("click", () => {
-                console.log(button.textContent)
-                displayPerson();
+                info.hour = button.textContent;
+                displayPerson(info);
             });
 
             div.appendChild(button)
@@ -426,7 +427,7 @@ const displayDej = function(interval){
 };
 
 
-const displayDiner = function(interval){
+const displayDiner = function(interval, info){
     const div = document.createElement("div");
     const diner = document.createElement("p");
     diner.textContent = "diner";
@@ -440,8 +441,8 @@ const displayDiner = function(interval){
             const hour = interval[x].replace(".", ":");
             button.textContent = hour;
             button.addEventListener("click", () => {
-                console.log(button.textContent)
-                displayPerson();
+                info.hour = button.textContent;
+                displayPerson(info);
             });
 
             div.appendChild(button)
@@ -454,7 +455,7 @@ const displayDiner = function(interval){
 
 // PERSON
 
-const createPerson = function(){
+const createPerson = function(info){
     const div = document.querySelector('#bookingInfo');
     div.classList.toggle("hour");
     div.classList.toggle("person");
@@ -465,7 +466,8 @@ const createPerson = function(){
         const button = document.createElement("button");
         button.textContent = x;
         button.addEventListener("click", () => {
-            console.log(button.textContent)
+            info.person = button.textContent;
+            console.log(info)
         })
 
         div.appendChild(button)
