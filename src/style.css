@@ -480,6 +480,49 @@ td > button:not(:disabled):hover,
     gap: 0.5rem;
 }
 
+
 #bookingInfo.person button{
     height: 4rem;
 }
+
+
+#bookingInfo.recap {
+    display: grid;
+    grid-template-rows: 6rem 1fr;
+    justify-items: center;
+    row-gap: 5rem;
+}
+
+#bookingInfo.recap h3 {
+    font-size: 1.5rem;
+}
+
+
+#bookingInfo.recap > div:first-child{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding-top: 2rem;
+    align-items: center;
+}
+
+
+#bookingInfo.recap > div:first-child > div:last-child{
+    border: 1px solid var(--button-interaction);
+    padding: 1rem;
+    border-radius: 2rem;
+}
+
+
+#bookingInfo.recap span {
+    padding: 0 1rem;
+}
+
+
+
+#bookingInfo.recap form{
+    display: grid;
+    grid-template-rows: 1fr 1fr 3fr 1fr;
+    row-gap: 2rem;
+}
+
