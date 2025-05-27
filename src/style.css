@@ -254,7 +254,9 @@ nav > button {
     margin: auto;
     border: none;
     width: 29rem;
-    height: 80dvh;
+    height: max-content;
+    padding-bottom: 7rem;
+    overflow: hidden;
     
     display: grid;
     grid-template-rows: 7rem 5rem 1fr;
@@ -327,13 +329,13 @@ caption, th {
 
 
 caption{
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 
 th, td{
-    width: 3rem;
-    height: 3rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 /* td{
