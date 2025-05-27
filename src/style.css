@@ -13,12 +13,13 @@
     --main-color: #fbf0df;
     --secondary-color: #334D66;
 
-    --button-interaction: #d8d8d8;
+    --button-interaction: #dadada;
+    --active-button: #bbbbbb;
 
     /* --main-color: #334D66;
     --secondary-color: #fbf0df; */
 
-    --ascent-color: #4EA669;
+    --ascent-color: #DB7F67;
 }
 
 
@@ -73,9 +74,20 @@ nav > button {
 
     cursor: pointer;
     text-shadow: var(--secondary-color) 1px 1px 0px;
-
-
 }
+
+
+nav > button:last-child{
+    background-color: var(--ascent-color);
+    border-radius: 1.4rem;
+    color: var(--main-color);
+}
+
+
+nav > button:last-child:hover{
+    background-color: var(--secondary-color);
+}
+
 
 #content.home{
     position: absolute;
@@ -247,6 +259,13 @@ nav > button {
     margin-bottom: 3rem;
 }
 
+
+.listing li > p:nth-child(2),
+.listing > p:last-child{
+    color: var(--ascent-color);
+}
+
+
 /* create a modal above the actual menu */    
     
 #reservation{
@@ -254,9 +273,8 @@ nav > button {
     margin: auto;
     border: none;
     width: 29rem;
-    height: max-content;
-    padding-bottom: 7rem;
     overflow: hidden;
+    height: auto;
     
     display: grid;
     grid-template-rows: 7rem 5rem 1fr;
@@ -264,7 +282,11 @@ nav > button {
 
     background-color: rgb(252, 252, 252);
     border-radius: 1rem;
+    border: var(--secondary-color) 4px solid;
 }
+
+
+
 
 /* ::backdrop{
     background-color: black;
@@ -279,10 +301,13 @@ nav > button {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: var(--secondary-color);
+
 }
 
 
 #reservation  h1 {
+    color: white;
     text-transform: capitalize;
 }
 
@@ -291,11 +316,11 @@ nav > button {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid var(--main-color);
+    border-bottom: 4px solid var(--secondary-color);
 
 }
 
-#reservation  h1, #reservation > div:nth-child(2){
+#reservation > * {
     padding: 0 2rem;
 }
 
@@ -338,32 +363,49 @@ th, td{
     height: 1.5rem;
 }
 
-/* td{
-    background-color: #334d664a;
-} */
 
-td > button {
+td > button,
+#bookingInfo.hour button {
     width: 100%;
-    height: 100%;
-    padding: 1rem;
     
     background: none;
-    border: solid 1px #bfbfbf;
     border-radius: 6px;
-
     font-size: 1rem;
+
+    
+}
+
+
+td > button{
+    height: 100%;
+    padding: 1rem;
+}
+
+
+td > button:disabled{
+    border: var(--button-interaction) 1px solid;
+}
+
+td > button:not(:disabled), #bookingInfo.hour button{
+    border: var(--secondary-color) 1px solid;
+    color: var(--secondary-color);
 }
 
 
 td > button[data-date = "none"]{
     background-color: var(--button-interaction);
+    border: none;
 }
 
 
-td > button:not(:disabled):hover{
-    background-color: var(--button-interaction);
+td > button:not(:disabled):hover,
+#bookingInfo.hour button:hover{
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
     cursor: pointer;
 }
+
 
 #arrow > th:first-child{
     text-align: left;
@@ -384,26 +426,43 @@ td > button:not(:disabled):hover{
 }
 
 
-#bookingInfo{
-    height: 100%;
+
+#bookingInfo.hour{
+    padding-top: 2rem;
+    overflow-y: scroll;
+
+    display: grid;
+    grid-template-rows: 4rem repeat(2, 1fr);
+
 }
 
 
-#bookingInfo.hour {
-    display: flex;
-    flex-direction: column;
+#bookingInfo.hour > h2{
+    initial-letter: capitalize;
 }
+
+
+#bookingInfo.hour > div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    margin-bottom: 3rem;
+}
+
+
+#bookingInfo.hour > div > p {
+    grid-column: 1/4;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
 
 #bookingInfo.hour button{
-    height: 4rem;
-    transition: 400ms;
+    height: 3.5rem;
 }
 
-
-#bookingInfo.hour button:hover{
-    height: 4.5rem;
-    transition: 400ms;
-}
 
 
 /* #bookingInfo.recap > div:first-child{
