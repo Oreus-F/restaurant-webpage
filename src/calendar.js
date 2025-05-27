@@ -82,6 +82,7 @@ const displayPerson =  function(){
     createPerson();
 }
 
+
 const displayRecap = function(recap){
     changeDisplay();
     createRecap();
@@ -162,6 +163,7 @@ const weeks = {
     5 : ["vendredi", "friday", 4],
     6 : ["samedi", "sturday", 5],
 };
+
 
 const intervalHours = [
     "12.00", "12.30", "13.00", 
@@ -448,6 +450,8 @@ const createPerson = function(){
     const div = document.querySelector('#bookingInfo');
     div.classList.toggle("hour");
     div.classList.toggle("person");
+
+
 
     for (let x = 1; x < 13; x++){
         const button = document.createElement("button");
