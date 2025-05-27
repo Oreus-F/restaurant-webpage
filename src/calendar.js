@@ -178,6 +178,7 @@ const openHours = {
     night : ["19.00", "22.30"]
 };
 
+let info = {};
 
 /* PICK A DAY */
 
@@ -216,11 +217,9 @@ const createCalendar = function(firstDay, actual = firstDay){
                 button.setAttribute("disabled", "true");
             } else {
                 button.addEventListener("click", () => {
-                    let info = {
-                        day: button.textContent,
-                        month: actual.month[0],
-                        hour: (button.textContent != actual.day) ? firstDay.hour : actual.hour,
-                    }
+                    info.day = button.textContent;
+                    info.month = actual.month[0];
+                    info.hour = (button.textContent != actual.day) ? firstDay.hour : actual.hour;
                     displayHour(info);
                 });
             }
