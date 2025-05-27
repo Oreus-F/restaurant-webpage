@@ -365,14 +365,12 @@ th, td{
 
 
 td > button,
-#bookingInfo.hour button {
-    width: 100%;
-    
+#bookingInfo.hour button,
+#bookingInfo.person button{
+    width: 100%;   
     background: none;
     border-radius: 6px;
-    font-size: 1rem;
-
-    
+    font-size: 1rem;  
 }
 
 
@@ -386,7 +384,9 @@ td > button:disabled{
     border: var(--button-interaction) 1px solid;
 }
 
-td > button:not(:disabled), #bookingInfo.hour button{
+td > button:not(:disabled),
+#bookingInfo.hour button,
+#bookingInfo.person button{
     border: var(--secondary-color) 1px solid;
     color: var(--secondary-color);
 }
@@ -399,7 +399,8 @@ td > button[data-date = "none"]{
 
 
 td > button:not(:disabled):hover,
-#bookingInfo.hour button:hover{
+#bookingInfo.hour button:hover,
+#bookingInfo.person button:hover{
     background-color: var(--secondary-color);
     color: white;
     border-color: var(--secondary-color);
@@ -464,7 +465,21 @@ td > button:not(:disabled):hover,
 }
 
 
+#bookingInfo.person {
+    padding-top: 2rem;
 
-/* #bookingInfo.recap > div:first-child{
+    display: grid;
+    grid-template-rows: 4rem 1fr;
+    align-items: start;
+}
 
-} */
+
+#bookingInfo.person > div:last-child{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+#bookingInfo.person button{
+    height: 4rem;
+}
