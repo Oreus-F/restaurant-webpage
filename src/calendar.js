@@ -1,10 +1,29 @@
 // IMPORT
 
 import calendarIcon from "../asset/img/calendar_icon.svg";
+import calendarWhite from "../asset/img/calendar_white.svg";
+import calendarBlue from "../asset/img/calendar_blue.svg";
+import calendarAscent from "../asset/img/calendar_ascent.svg";
+
+
 import hourIcon from "../asset/img/clock_icon.svg";
+import hourWhite from "../asset/img/hour_white.svg";
+import hourBlue from "../asset/img/hour_blue.svg";
+import hourAscent from "../asset/img/hour_ascent.svg";
+
 import personIcon from "../asset/img/person_icon.svg";
+import personWhite from "../asset/img/person_white.svg";
+import personBlue from "../asset/img/person_blue.svg";
+import personAscent from "../asset/img/person_ascent.svg";
+
 import recapIcon from "../asset/img/recap_icon.svg";
+import recapWhite from "../asset/img/recap_white.svg";
+import recapBlue from "../asset/img/recap_blue.svg";
+import recapAscent from "../asset/img/recap_ascent.svg";
+
 import separatorIcon from "../asset/img/separator.svg";
+import separatorBlue from "../asset/img/separator_blue.svg";
+import separatorAscent from "../asset/img/separator_ascent.svg";
 
 
 // DISPLAY 
@@ -35,7 +54,6 @@ const createDialog = function(){
 }
 
 
-
 const createWidget = function() {
     const visualRecap = document.createElement("div");
     const bookingWidget = document.createElement("div");
@@ -45,10 +63,10 @@ const createWidget = function() {
         const button = document.createElement("button");
         const icon = document.createElement("div");
         const img = document.createElement("img");
-        if (x===0) img.src = calendarIcon;
-        if (x===1) img.src = hourIcon;
-        if (x===2) img.src = personIcon;
-        if (x===3) img.src = recapIcon;
+        if (x===0) img.src = calendarBlue;
+        if (x===1) img.src = hourBlue;
+        if (x===2) img.src = personBlue;
+        if (x===3) img.src = recapBlue;
 
 
         icon.appendChild(img);
@@ -57,7 +75,7 @@ const createWidget = function() {
         if (x < 3){
             const separator = document.createElement("div");
             const img = document.createElement("img");
-            img.src = separatorIcon;
+            img.src = separatorBlue;
             separator.appendChild(img)
             button.appendChild(separator);
         };
@@ -72,6 +90,12 @@ const createWidget = function() {
 
     visualRecap.appendChild(bookingWidget);
     return visualRecap;
+}
+
+
+const updateWidget = function(info){
+    const widget = document.querySelector("#widget");
+    if (!widget.getAttribute("class").includes("day")) widget.classList.toggle("day")
 }
 
 
@@ -250,6 +274,7 @@ const createCalendar = function(firstDay, actual = firstDay){
                     info.day = button.textContent;
                     info.month = actual.month[0];
                     info.hour = (button.textContent != actual.day) ? firstDay.hour : actual.hour;
+                    // updateWidget(info);
                     displayHour(info);
                 });
             }
