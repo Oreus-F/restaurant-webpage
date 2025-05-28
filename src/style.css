@@ -349,32 +349,23 @@ nav > button:last-child:hover{
 
 
 #widget > button {
+    display: flex;
+    justify-content: space-between;
     flex: 1;
-    padding: 1rem;
-}
-
-
-#widget{
-
-    border: var(--ascent-color) 1px solid;
-
-}
-
-
-
-
-
-
-
-#widget > button{
-
     background: none;
-
     border: none;
 
 }
 
 
+#widget > button > div:first-child{
+    flex: 1;
+}
+
+
+#widget svg {
+    fill: black;
+}
 
 
 
