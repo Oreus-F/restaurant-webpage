@@ -1,3 +1,12 @@
+// IMPORT
+
+import calendarIcon from "../asset/img/calendar_icon.svg";
+import hourIcon from "../asset/img/clock_icon.svg";
+import personIcon from "../asset/img/person_icon.svg";
+import recapIcon from "../asset/img/recap_icon.svg";
+import separatorIcon from "../asset/img/separator.svg";
+
+
 // DISPLAY 
 
 const createDialog = function(){
@@ -35,11 +44,25 @@ const createWidget = function() {
     for (let x=0; x <4; x++){
         const button = document.createElement("button");
         const icon = document.createElement("div");
+        const img = document.createElement("img");
+        if (x===0) img.src = calendarIcon;
+        if (x===1) img.src = hourIcon;
+        if (x===2) img.src = personIcon;
+        if (x===3) img.src = recapIcon;
+
+
+        icon.appendChild(img);
+
         button.appendChild(icon)
         if (x < 3){
             const separator = document.createElement("div");
+            const img = document.createElement("img");
+            img.src = separatorIcon;
+            separator.appendChild(img)
             button.appendChild(separator);
         };
+
+        if (x > 0) button.setAttribute("diabled", "true");
 
         button.addEventListener("click", () => {
         });
