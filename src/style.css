@@ -290,7 +290,7 @@ nav > button:last-child:hover{
     height: auto;
     
     display: grid;
-    grid-template-rows: 7rem 5rem 1fr;
+    grid-template-rows: 7rem 6rem 1fr;
     align-items: center;
 
     background-color: rgb(252, 252, 252);
@@ -331,11 +331,14 @@ nav > button:last-child:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 4px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
 
 }
 
-#reservation > * {
+#reservation > div:first-child,
+#reservation > div:nth-child(2),
+#bookingInfo.hour,
+#bookingInfo.person {
     padding: 0 2rem;
 }
 
@@ -344,7 +347,10 @@ nav > button:last-child:hover{
 
 #widget{
     display: flex;
+    position: relative;
     flex: 1;
+    border: var(--secondary-color) 2px solid;
+    border-radius: 8px;
 }
 
 
@@ -354,6 +360,7 @@ nav > button:last-child:hover{
     flex: 1;
     background: none;
     border: none;
+    padding: .3rem 0 0.3rem 0.5rem;
 
 }
 
@@ -363,16 +370,22 @@ nav > button:last-child:hover{
 }
 
 
-#widget img {
-    filter: brightness(0.4);
+#widget.day > button:first-child{
+    background-color: var(--secondary-color);
 }
 
 
 
-/* #widget.day{
-
-
-
+#widget.day > button:first-child > div:last-child::after{
+    content: "";
+    position: absolute;
+    height: 1.8rem;
+    width: 1.8rem;
+    rotate: 45deg;
+    border-radius: 4px;
+    margin-left: -1rem;
+    top: 10%;
+    background-color: var(--secondary-color);
 }
 
 
@@ -403,7 +416,10 @@ widget.recap{
 
 
 
-} */
+}
+
+
+
 
 
 
@@ -443,7 +459,7 @@ td > button,
     width: 100%;   
     background: none;
     border-radius: 6px;
-    font-size: 1rem;  
+    font-size: 1rem;
 }
 
 
@@ -576,6 +592,8 @@ td > button:not(:disabled):hover,
     grid-template-rows: 6rem 1fr;
     justify-items: center;
     row-gap: 5rem;
+    overflow-y: scroll;
+    padding-bottom: 3rem;
 }
 
 #bookingInfo.recap h3 {
@@ -642,4 +660,23 @@ textarea:focus{
     resize: none;
     height: 12rem;
     padding: 1rem;
+    border: var(--secondary-color) 1px solid;
+}
+
+
+#bookingInfo.recap button{
+    background: none;
+    border: var(--secondary-color) 2px solid;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+
+#bookingInfo.recap button:hover{
+    background-color: var(--secondary-color);
+    color: white;
+    cursor: pointer;
 }
