@@ -363,8 +363,8 @@ nav > button:last-child:hover{
 }
 
 
-#widget svg {
-    fill: black;
+#widget img {
+    filter: brightness(0.4);
 }
 
 
