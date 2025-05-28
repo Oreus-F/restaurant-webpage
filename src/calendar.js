@@ -20,6 +20,8 @@ const createDialog = function(){
     booking.setAttribute("id", "bookingInfo");
 
     dialog.appendChild(booking);
+
+    const close = document.createElement("span");
     content.appendChild(dialog);
 }
 
@@ -84,6 +86,15 @@ const displayPerson =  function(info){
 const displayRecap = function(info){
     changeDisplay();
     createRecap(info);
+}
+
+
+const closeDialog = function(){
+    const dialog = document.querySelector("#reservation");
+    const content = document.querySelector("#content"); 
+
+    dialog.replaceChildren;
+    content.removeChild(dialog);
 }
 
 
@@ -173,10 +184,6 @@ const intervalHours = [
     "22.00", "22.15", "22.30",
 ];
 
-const openHours = {
-    day : ["12.00", "14.30"],
-    night : ["19.00", "22.30"]
-};
 
 let info = {};
 
@@ -529,6 +536,7 @@ const showRecap = function(info){
     return div
 }
 
+
 const createForm = function(info){
     const div =  document.createElement("div");
     
@@ -540,29 +548,36 @@ const createForm = function(info){
     form.appendChild(p);
 
 
+    const container = document.createElement("div");
+
     const label = document.createElement("label");
     const span = document.createElement("span");
     span.textContent = "Adresse e-mail*";
     label.appendChild(span);
-    form.appendChild(label);
+    container.appendChild(label);
 
     const input = document.createElement("input");
     input.setAttribute("type", "email");
     input.setAttribute("name", "email");
     input.setAttribute("required", "true");
-    input.setAttribute("placeholder", "Votre adresse e-mail")
-    form.appendChild(input);
+    input.setAttribute("placeholder", "Votre adresse e-mail");
+    container.appendChild(input)
+    form.appendChild(container);
 
 
     const comment = document.createElement("textarea");
-    comment.setAttribute("placeholder", "pour plus d'informations concernant des allergies ou autres");
+    comment.setAttribute("placeholder", "Pour toutes informations complémentaires.");
     form.appendChild(comment);
 
 
 
 
     const button = document.createElement("button");
-    button.textContent = "compléter";
+    button.textContent = "réserver";
+    button.addEventListener("click", () => {
+        closeDialog();
+        alert("Not the purpose of this project, but it was fun to create though");
+    })
     form.appendChild(button);
 
 
@@ -574,6 +589,8 @@ const createForm = function(info){
 }
 
 
+
+
 const dialog = document.querySelector("#reservation");
 
 const today = getInfos();
@@ -583,4 +600,4 @@ const Todays1st = getInfos(today.month[1], 1, today.year);
 
 // displayHour(today)
 
-export default displayCalendar 
+export default displayCalendar
