@@ -80,13 +80,10 @@ const createWidget = function() {
             button.appendChild(separator);
         };
 
-        button.addEventListener("click", (event) => {
-            updateWidget(event)
+        if (x > 0) button.setAttribute("diabled", "true");
+
+        button.addEventListener("click", () => {
         });
-
-        button.setAttribute("disabled", "true");
-
-        
 
         bookingWidget.appendChild(button);
     };
@@ -98,7 +95,33 @@ const createWidget = function() {
 
 const updateWidget = function(info){
     const widget = document.querySelector("#widget");
+<<<<<<< HEAD
     if (!widget.getAttribute("class").includes("day")) widget.classList.toggle("day")
+=======
+    const calendar = document.querySelector("#calendar");
+    const hour = document.querySelector("#hour");
+    const person = document.querySelector("#person");
+    const recap = document.querySelector("#recap");
+
+
+    const state = [
+        ["day", calendar, calendarWhite],
+        ["hour", hour, hourWhite],
+        ["person", person, personWhite],
+        ["recap", recap, recapWhite],
+    ];
+
+    const target = event.target;
+
+    for(let x = 0; x < state.length; x++){
+        if(target.closest(`.${state[x][0]}`)){
+            widget.classList.toggle(`${state[x][0]}`);
+            state[x][1].src = state[x][2];
+        }
+    }
+
+
+>>>>>>> parent of 32d8cea (broken createCalendar)
 }
 
 
@@ -241,7 +264,6 @@ let info = {};
 
 
 const createCalendar = function(firstDay, actual = firstDay){
-    const calendar = document.querySelector("#calendar");
     let calendarBody = document.querySelectorAll("td");
     const caption = document.querySelector("caption");
     caption.textContent = firstDay.month[0];
