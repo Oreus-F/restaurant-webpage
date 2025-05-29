@@ -59,14 +59,14 @@ const createWidget = function() {
     const bookingWidget = document.createElement("div");
     bookingWidget.setAttribute("id", "widget")
 
-    for (let x=0; x < 4; x++){
+    for (let x=0; x <4; x++){
         const button = document.createElement("button");
         const icon = document.createElement("div");
         const img = document.createElement("img");
-        if (x===0) {img.src = calendarBlue ; img.setAttribute("id", "calendar")};
-        if (x===1) {img.src = hourBlue ; img.setAttribute("id", "hour")};
-        if (x===2) {img.src = personBlue ; img.setAttribute("id", "person")};
-        if (x===3) {img.src = recapBlue ; img.setAttribute("id", "recap")};
+        if (x===0) img.src = calendarBlue;
+        if (x===1) img.src = hourBlue;
+        if (x===2) img.src = personBlue;
+        if (x===3) img.src = recapBlue;
 
 
         icon.appendChild(img);
@@ -96,58 +96,9 @@ const createWidget = function() {
 }
 
 
-const updateWidget = function(event){
+const updateWidget = function(info){
     const widget = document.querySelector("#widget");
-    const container = document.querySelector("#bookingInfo")
-    const calendar = document.querySelector("#calendar");
-    const hour = document.querySelector("#hour");
-    const person = document.querySelector("#person");
-    const recap = document.querySelector("#recap");
-    const buttons = widget.children;
-
-
-
-    const state = [
-        ["day", calendar, calendarWhite, calendarBlue, createCalendar],
-        ["hour", hour, hourWhite, hourBlue, createHours],
-        ["person", person, personWhite, personBlue, createPerson],
-    ];
-
-    const target = event.target;
-
-
-    if (target.closest("#widget")) {
-        
-        for (let a = 0; a < state.length; a++){
-            if(target.closest(`.${state[a][0]}`)){
-                if(a === 0){
-                    widget.removeAttribute("class");
-                    container.removeAttribute("class");
-                    changeDisplay();
-                    createTable();
-                    activateArrows(today);
-                    createCalendar(Todays1st, today);
-                    state[a][4](Todays1st, today);
-                }
-                
-            }
-        }
-        
-
-    } else {
-        for(let x = 0; x < state.length; x++){
-            if(target.closest(`.${state[x][0]}`)){
-                widget.removeAttribute("class");
-                widget.classList.toggle(`${state[x][0]}`);
-                state[x][1].src = state[x][2];
-                buttons[x].removeAttribute("disabled");
-            };
-        };
-    };
-
-
-
-
+    if (!widget.getAttribute("class").includes("day")) widget.classList.toggle("day")
 }
 
 
@@ -323,11 +274,11 @@ const createCalendar = function(firstDay, actual = firstDay){
             if (button.textContent < actual.day){
                 button.setAttribute("disabled", "true");
             } else {
-                button.addEventListener("click", (event) => {
+                button.addEventListener("click", () => {
                     info.day = button.textContent;
                     info.month = actual.month[0];
                     info.hour = (button.textContent != actual.day) ? firstDay.hour : actual.hour;
-                    updateWidget(event);
+                    // updateWidget(info);
                     displayHour(info);
                 });
             }
@@ -521,8 +472,7 @@ const displayDej = function(interval, info){
             const button = document.createElement("button");
             const hour = interval[x].replace(".", ":");
             button.textContent = hour;
-            button.addEventListener("click", (event) => {
-                updateWidget(event);
+            button.addEventListener("click", () => {
                 info.hour = button.textContent;
                 displayPerson(info);
             });
@@ -548,8 +498,7 @@ const displayDiner = function(interval, info){
             const button = document.createElement("button");
             const hour = interval[x].replace(".", ":");
             button.textContent = hour;
-            button.addEventListener("click", (event) => {
-                updateWidget(event);
+            button.addEventListener("click", () => {
                 info.hour = button.textContent;
                 displayPerson(info);
             });
@@ -578,8 +527,7 @@ const createPerson = function(info){
     for (let x = 1; x < 21; x++){
         const button = document.createElement("button");
         button.textContent = x;
-        button.addEventListener("click", (event) => {
-            updateWidget(event)
+        button.addEventListener("click", () => {
             info.person = button.textContent;
             displayRecap(info);
         })
