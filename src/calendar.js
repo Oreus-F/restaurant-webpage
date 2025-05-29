@@ -93,15 +93,14 @@ const createWidget = function() {
 }
 
 
-const updateWidget = function(info){
+const updateWidget = function(event){
     const widget = document.querySelector("#widget");
-<<<<<<< HEAD
-    if (!widget.getAttribute("class").includes("day")) widget.classList.toggle("day")
-=======
+    const container = document.querySelector("#bookingInfo")
     const calendar = document.querySelector("#calendar");
     const hour = document.querySelector("#hour");
     const person = document.querySelector("#person");
     const recap = document.querySelector("#recap");
+    const buttons = widget.children;
 
 
     const state = [
@@ -121,7 +120,6 @@ const updateWidget = function(info){
     }
 
 
->>>>>>> parent of 32d8cea (broken createCalendar)
 }
 
 
@@ -296,11 +294,11 @@ const createCalendar = function(firstDay, actual = firstDay){
             if (button.textContent < actual.day){
                 button.setAttribute("disabled", "true");
             } else {
-                button.addEventListener("click", () => {
+                button.addEventListener("click", (event) => {
                     info.day = button.textContent;
                     info.month = actual.month[0];
                     info.hour = (button.textContent != actual.day) ? firstDay.hour : actual.hour;
-                    // updateWidget(info);
+                    updateWidget(event);
                     displayHour(info);
                 });
             }
