@@ -63,10 +63,10 @@ const createWidget = function() {
         const button = document.createElement("button");
         const icon = document.createElement("div");
         const img = document.createElement("img");
-        if (x===0) img.src = calendarBlue;
-        if (x===1) img.src = hourBlue;
-        if (x===2) img.src = personBlue;
-        if (x===3) img.src = recapBlue;
+        if (x===0) {img.src = calendarBlue ; img.setAttribute("id", "calendarIcon")};
+        if (x===1) {img.src = hourBlue ; img.setAttribute("id", "hour")};
+        if (x===2) {img.src = personBlue ; img.setAttribute("id", "person")};
+        if (x===3) {img.src = recapBlue ; img.setAttribute("id", "recap")};
 
 
         icon.appendChild(img);
@@ -96,7 +96,7 @@ const createWidget = function() {
 const updateWidget = function(event){
     const widget = document.querySelector("#widget");
     const container = document.querySelector("#bookingInfo")
-    const calendar = document.querySelector("#calendar");
+    const calendar = document.querySelector("#calendarIcon");
     const hour = document.querySelector("#hour");
     const person = document.querySelector("#person");
     const recap = document.querySelector("#recap");
@@ -493,7 +493,8 @@ const displayDej = function(interval, info){
             const button = document.createElement("button");
             const hour = interval[x].replace(".", ":");
             button.textContent = hour;
-            button.addEventListener("click", () => {
+            button.addEventListener("click", (event) => {
+                updateWidget(event)
                 info.hour = button.textContent;
                 displayPerson(info);
             });
@@ -519,8 +520,9 @@ const displayDiner = function(interval, info){
             const button = document.createElement("button");
             const hour = interval[x].replace(".", ":");
             button.textContent = hour;
-            button.addEventListener("click", () => {
+            button.addEventListener("click", (event) => {
                 info.hour = button.textContent;
+                updateWidget(event)
                 displayPerson(info);
             });
 
@@ -548,8 +550,9 @@ const createPerson = function(info){
     for (let x = 1; x < 21; x++){
         const button = document.createElement("button");
         button.textContent = x;
-        button.addEventListener("click", () => {
+        button.addEventListener("click", (event) => {
             info.person = button.textContent;
+            updateWidget(event)
             displayRecap(info);
         })
 
