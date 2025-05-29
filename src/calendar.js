@@ -80,10 +80,13 @@ const createWidget = function() {
             button.appendChild(separator);
         };
 
-        if (x > 0) button.setAttribute("diabled", "true");
-
-        button.addEventListener("click", () => {
+        button.addEventListener("click", (event) => {
+            updateWidget(event)
         });
+
+        button.setAttribute("disabled", "true");
+
+        
 
         bookingWidget.appendChild(button);
     };
@@ -95,27 +98,54 @@ const createWidget = function() {
 
 const updateWidget = function(event){
     const widget = document.querySelector("#widget");
+    const container = document.querySelector("#bookingInfo")
     const calendar = document.querySelector("#calendar");
     const hour = document.querySelector("#hour");
     const person = document.querySelector("#person");
     const recap = document.querySelector("#recap");
+    const buttons = widget.children;
+
 
 
     const state = [
-        ["day", calendar, calendarWhite],
-        ["hour", hour, hourWhite],
-        ["person", person, personWhite],
-        ["recap", recap, recapWhite],
+        ["day", calendar, calendarWhite, calendarBlue, createCalendar],
+        ["hour", hour, hourWhite, hourBlue, createHours],
+        ["person", person, personWhite, personBlue, createPerson],
     ];
 
     const target = event.target;
 
-    for(let x = 0; x < state.length; x++){
-        if(target.closest(`.${state[x][0]}`)){
-            widget.classList.toggle(`${state[x][0]}`);
-            state[x][1].src = state[x][2];
+
+    if (target.closest("#widget")) {
+        
+        for (let a = 0; a < state.length; a++){
+            if(target.closest(`.${state[a][0]}`)){
+                if(a === 0){
+                    widget.removeAttribute("class");
+                    container.removeAttribute("class");
+                    changeDisplay();
+                    createTable();
+                    activateArrows(today);
+                    createCalendar(Todays1st, today);
+                    state[a][4](Todays1st, today);
+                }
+                
+            }
         }
-    }
+        
+
+    } else {
+        for(let x = 0; x < state.length; x++){
+            if(target.closest(`.${state[x][0]}`)){
+                widget.removeAttribute("class");
+                widget.classList.toggle(`${state[x][0]}`);
+                state[x][1].src = state[x][2];
+                buttons[x].removeAttribute("disabled");
+            };
+        };
+    };
+
+
 
 
 }
@@ -260,6 +290,7 @@ let info = {};
 
 
 const createCalendar = function(firstDay, actual = firstDay){
+    const calendar = document.querySelector("#calendar");
     let calendarBody = document.querySelectorAll("td");
     const caption = document.querySelector("caption");
     caption.textContent = firstDay.month[0];
