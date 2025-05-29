@@ -124,6 +124,14 @@ const updateWidget = function(event){
                     activateArrows(today);
                     createCalendar(Todays1st, today);
                     calendar.src = calendarBlue;  
+                } else if (a === 1) {
+                    widget.removeAttribute("class");
+                    container.removeAttribute("class");
+                    changeDisplay();
+                    createHours(intervalHours, info.hour, info);
+                    console.log(info)
+                    hour.src = hourBlue;
+                    // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
                 }
                 
             }
