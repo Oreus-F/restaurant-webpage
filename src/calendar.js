@@ -113,10 +113,12 @@ const updateWidget = function(event){
 
     for(let x = 0; x < state.length; x++){
         if(target.closest(`.${state[x][0]}`)){
+            widget.removeAttribute("class");
             widget.classList.toggle(`${state[x][0]}`);
             state[x][1].src = state[x][2];
-        }
-    }
+            buttons[x].removeAttribute("disabled");
+        };
+    };
 
 
 }
