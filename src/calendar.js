@@ -80,11 +80,12 @@ const createWidget = function() {
             button.appendChild(separator);
         };
 
-        if (x > 0) button.setAttribute("diabled", "true");
-
-        button.addEventListener("click", () => {
+        
+        button.addEventListener("click", (event) => {
+            updateWidget(event);
         });
-
+        
+        button.setAttribute("disabled", "true");
         bookingWidget.appendChild(button);
     };
 
@@ -104,19 +105,39 @@ const updateWidget = function(event){
 
 
     const state = [
-        ["day", calendar, calendarWhite, calendarBlue, createCalendar],
-        ["hour", hour, hourWhite, hourBlue, createHours],
-        ["person", person, personWhite, personBlue, createPerson],
+        ["day", calendar, calendarWhite, calendarBlue],
+        ["hour", hour, hourWhite, hourBlue],
+        ["person", person, personWhite, personBlue],
     ];
 
     const target = event.target;
 
-    for(let x = 0; x < state.length; x++){
-        if(target.closest(`.${state[x][0]}`)){
-            widget.removeAttribute("class");
-            widget.classList.toggle(`${state[x][0]}`);
-            state[x][1].src = state[x][2];
-            buttons[x].removeAttribute("disabled");
+    if (target.closest("#widget")) {
+        
+        for (let a = 0; a < state.length; a++){
+            if(target.closest(`.${state[a][0]}`)){
+                if(a === 0){
+                    widget.removeAttribute("class");
+                    container.removeAttribute("class");
+                    changeDisplay();
+                    createTable();
+                    activateArrows(today);
+                    createCalendar(Todays1st, today);
+                    calendar.src = calendarBlue;  
+                }
+                
+            }
+        }
+        
+
+    } else {
+        for(let x = 0; x < state.length; x++){
+            if(target.closest(`.${state[x][0]}`)){
+                widget.removeAttribute("class");
+                widget.classList.toggle(`${state[x][0]}`);
+                state[x][1].src = state[x][2];
+                buttons[x].removeAttribute("disabled");
+            };
         };
     };
 
