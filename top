@@ -1,0 +1,267 @@
+[33mcommit 3c573366098b7f87a251856619f1332c182e392d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcalendar-test[m[33m, [m[1;31morigin/calendar-test[m[33m)[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Thu May 29 18:20:12 2025 +0200
+
+    finish styling widget
+
+[33mcommit 32d8cea3aae6723169a9bf9c28fcbc72f65dd56f[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Thu May 29 18:19:57 2025 +0200
+
+    broken createCalendar
+
+[33mcommit 6ede3d8fe24b900c7e84f3b47dc8228b7ed6738a[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Thu May 29 17:17:42 2025 +0200
+
+    create Update Widget function
+
+[33mcommit 8272ef3c101c61c58a61ee1d3aa8694b075e5d0f[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Thu May 29 01:00:03 2025 +0200
+
+    style recap button and start styling widget
+
+[33mcommit 9d1cd04fbb473362cea5d0d630de091729bf5cad[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Thu May 29 00:59:33 2025 +0200
+
+    import new icon who need to be delete to be fair
+
+[33mcommit d0cd2271d2df98dc918ebac50616066626becfed[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Thu May 29 00:59:16 2025 +0200
+
+    add new icons who need to delete to befair
+
+[33mcommit 6368e68da9332f59e3647c32c7d3bf08460a92ed[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Wed May 28 18:20:38 2025 +0200
+
+    test change color with filter
+
+[33mcommit 65c16c1023327e4c855f13682301a54cc4222c07[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Wed May 28 18:14:55 2025 +0200
+
+    start styling widget
+
+[33mcommit a8550f2ccac3434bb1fd97fbd58bf849c89de195[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Wed May 28 18:14:36 2025 +0200
+
+    add svg for several test
+
+[33mcommit 21155500b482b9d155f5142079d231544ef7d048[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Wed May 28 18:14:16 2025 +0200
+
+    back to normal
+
+[33mcommit 72010c59ba92f3ef086d80a2562679385d4dbfe4[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Wed May 28 17:24:59 2025 +0200
+
+    switch places codes line for readibility
+
+[33mcommit eec1da7ec6c22fc5d0442f424c6b4f6f00f9f3d8[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Wed May 28 17:19:58 2025 +0200
+
+    disabled widget buttons
+
+[33mcommit c0789e3f6f0b049a5bbc458aeb0758e521dd439f[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Wed May 28 17:03:06 2025 +0200
+
+    add separator icon
+
+[33mcommit dd207464288e56dbd729c2eee26fcc3aca364669[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Wed May 28 16:23:48 2025 +0200
+
+    Finish style recap / fix reservation button
+
+[33mcommit d5d50cf5cb109afdb50794db1563cea387600902[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Wed May 28 16:23:07 2025 +0200
+
+    Add icons for widget part
+
+[33mcommit 58b5bf786cfb3f067f20c1355052369eba3dc3c5[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Wed May 28 16:22:49 2025 +0200
+
+    Create closeDialog function
+
+[33mcommit 2e290819227c916ed02e87cef5d25c012a010acb[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 23:52:14 2025 +0200
+
+    start styling recap display
+
+[33mcommit 88b0a97306786ab588ed6a425de2e4fa36ee112f[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 23:50:43 2025 +0200
+
+    init function to create recap display
+
+[33mcommit 0a1f18c4eceae631f55c644c1fed010389577c4d[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 23:50:17 2025 +0200
+
+    delete template comments
+
+[33mcommit 7f6f02f9c4ec158b51e84b3caa3a6619ad55d609[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 22:26:58 2025 +0200
+
+    style person display
+
+[33mcommit 8b62b1c83755848d9367f6548d8b0e140552d061[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 22:11:00 2025 +0200
+
+    adadpt color for calender and hours selection
+
+[33mcommit dc839a6bb3ce499132294f01780b60484c10e85c[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 21:50:52 2025 +0200
+
+    partr 2
+
+[33mcommit 7c7942f4d9d68ef94fa10262c5cfafbd3a86a2cb[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 21:50:46 2025 +0200
+
+    create info arg which conserve all user selection
+
+[33mcommit 31fe501247843743f11abef8194d5b3bd3ffbd18[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 19:12:26 2025 +0200
+
+    Add title to hours display
+
+[33mcommit 175e0e1a5f9caa3ad07534517d362c18fb0e14c4[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 18:37:29 2025 +0200
+
+    Add more hours to reserve in IntervalHours
+
+[33mcommit c93909256b18f4a87e06563292f9084d5327e02a[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 18:32:24 2025 +0200
+
+    add some code space
+
+[33mcommit 139fd4bf816de4d1ad52b66700a4ab0803b711d1[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 18:30:21 2025 +0200
+
+    create function for displaying launch and diner time period
+
+[33mcommit 9e2d76caaeaa102f6c6076346529aaefc9d50150[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 17:31:50 2025 +0200
+
+    delete preivous change no need
+
+[33mcommit 0dc459f13b00424fb91ce97796034b2a938d5f47[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 17:09:49 2025 +0200
+
+    Create a container inside bookingInfo
+
+[33mcommit 169d015ed4765eeea466cfc714e2400434440559[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Tue May 27 17:01:19 2025 +0200
+
+    add overflow padding / max content height and paddingbottom
+
+[33mcommit 8e7ec6626bd1c2221f6a6eabe7be9b1eea0ac48c[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Mon May 26 18:52:48 2025 +0200
+
+    Style most of calendar booking part
+
+[33mcommit 7f9f0089301c48a7ff5ac9d0558741a9df5c71ed[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Mon May 26 18:52:35 2025 +0200
+
+    Create space for dialog information / and disabled arrows if no month available
+
+[33mcommit 5f6361a274d9582adc50d0721226a62de8893519[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Mon May 26 18:51:40 2025 +0200
+
+    Comment recap template
+
+[33mcommit 942050457c4a41697dde2947060af77787d396ae[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Mon May 26 15:11:02 2025 +0200
+
+    finish hardcoding recap template
+
+[33mcommit 5d053932193c74da7cfce1eaff1f6e01b2e5568e[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Mon May 26 15:04:36 2025 +0200
+
+    Create false recap in order to style it
+
+[33mcommit 3419e9649a20b9eb95e3a4809178fd39484c8fd8[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Mon May 26 01:01:32 2025 +0200
+
+    switch functions places for readibility. Create hours and person function
+
+[33mcommit 0b5d7e5f275aa90c250884e101d950b43a4c4c99[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Mon May 26 01:01:00 2025 +0200
+
+    Style buttons for hours display
+
+[33mcommit 7b4422e431e5b001458e73bd2ad46cc81c376b4d[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Mon May 26 01:00:32 2025 +0200
+
+    delete tempalte in comment
+
+[33mcommit 50529a08d1887f6a550a83caaf1ea11056db6b22[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Mon May 26 00:59:57 2025 +0200
+
+    keep menu open and call displayReservation
+
+[33mcommit 761c1a69259ff859eba521c2117dc8b3d5f11b29[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Mon May 26 00:54:31 2025 +0200
+
+    Delete Hours.js do everything on calendar.js
+
+[33mcommit 90471a7a1a1052a0c49071e766da2cfe688b0445[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Sun May 25 20:50:18 2025 +0200
+
+    create function for all DOM elements creation
+
+[33mcommit 69a85ef875049ff8ce854460aa7cdb2404450a5c[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Sun May 25 20:36:05 2025 +0200
+
+    create table in function and join all 3 mains function into one
+
+[33mcommit 1f9feae5b9ce2f542a007df24a702c6bdc2363c0[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Sun May 25 19:57:27 2025 +0200
+
+    create function to know exact hour and if its in openTime restaurant
+
+[33mcommit 5c80d26dd32c77baecea84d75dab2e842ba8b8be[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Sun May 25 18:37:54 2025 +0200
+
+    change import name of calendar
+
+[33mcommit 6a3e860647f02dcf40cdff535706a80ffe33e442[m
+Author: Oreus-F <fourniol.lucas@gmail.com>
+Date:   Sun May 25 18:37:39 
