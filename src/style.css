@@ -351,6 +351,7 @@ nav > button:last-child:hover{
     flex: 1;
     border: var(--secondary-color) 2px solid;
     border-radius: 8px;
+    overflow: hidden;
 }
 
 
@@ -361,7 +362,6 @@ nav > button:last-child:hover{
     background: none;
     border: none;
     padding: .3rem 0 0.3rem 0.5rem;
-
 }
 
 
@@ -370,13 +370,18 @@ nav > button:last-child:hover{
 }
 
 
-#widget.day > button:first-child{
+#widget.day > button:first-child,
+#widget.hour > button:nth-child(-n+2),
+#widget.person > button:nth-child(-n+3),
+#widget.recap > button{
     background-color: var(--secondary-color);
+
 }
 
 
-
-#widget.day > button:first-child > div:last-child::after{
+#widget.day > button:first-child > div:last-child::after,
+#widget.hour > button:nth-child(-n+2) > div:last-child::after,
+#widget.person > button:nth-child(-n+3) > div:last-child::after{
     content: "";
     position: absolute;
     height: 1.8rem;
@@ -387,6 +392,7 @@ nav > button:last-child:hover{
     top: 10%;
     background-color: var(--secondary-color);
 }
+
 
 
 
@@ -412,7 +418,7 @@ nav > button:last-child:hover{
 
 
 
-widget.recap{
+#widget.recap{
 
 
 
