@@ -63,10 +63,10 @@ const createWidget = function() {
         const button = document.createElement("button");
         const icon = document.createElement("div");
         const img = document.createElement("img");
-        if (x===0) {img.src = calendarBlue ; img.setAttribute("id", "calendar")};
-        if (x===1) {img.src = hourBlue ; img.setAttribute("id", "hour")};
-        if (x===2) {img.src = personBlue ; img.setAttribute("id", "person")};
-        if (x===3) {img.src = recapBlue ; img.setAttribute("id", "recap")};
+        if (x===0) img.src = calendarBlue;
+        if (x===1) img.src = hourBlue;
+        if (x===2) img.src = personBlue;
+        if (x===3) img.src = recapBlue;
 
 
         icon.appendChild(img);
