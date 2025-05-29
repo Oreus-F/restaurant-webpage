@@ -104,10 +104,9 @@ const updateWidget = function(event){
 
 
     const state = [
-        ["day", calendar, calendarWhite],
-        ["hour", hour, hourWhite],
-        ["person", person, personWhite],
-        ["recap", recap, recapWhite],
+        ["day", calendar, calendarWhite, calendarBlue, createCalendar],
+        ["hour", hour, hourWhite, hourBlue, createHours],
+        ["person", person, personWhite, personBlue, createPerson],
     ];
 
     const target = event.target;
