@@ -102,33 +102,7 @@ const updateWidget = function(event){
     const target = event.target;
 
     if (target.closest("#widget")) {
-        
-        for (let a = 0; a < state.length; a++){
-            if(target.closest(`.${state[a][0]}`)){
-                if(a === 0){
-                    widget.removeAttribute("class");
-                    container.removeAttribute("class");
-                    changeDisplay();
-                    createTable();
-                    activateArrows(today);
-                    createCalendar(Todays1st, today);
-                    calendar.src = calendarBlue;  
-                } else if (a === 1) {
-                    widget.removeAttribute("class");
-                    container.removeAttribute("class");
-                    changeDisplay();
-
-
-
-                    createHours(intervalHours, info.hour, info);
-                    hour.src = hourBlue;
-                    // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
-                }
-                
-            }
-        }
-        
-
+        deleteProperties(12, "ok", target, state, "hour");
     } else {
         updateForward(state, target, buttons);
     };
@@ -146,6 +120,38 @@ const updateForward = function(state, target, buttons){
             buttons[x].removeAttribute("disabled");
         };
     };
+}
+
+
+const updateBackward = function(state, target){
+
+
+    for (let a = 0; a < state.length; a++){
+        if(target.closest(`.${state[a][0]}`)){
+            if(a === 0){
+
+
+                widget.removeAttribute("class");
+                container.removeAttribute("class");
+                changeDisplay();
+                createTable();
+                activateArrows(today);
+                createCalendar(Todays1st, today);
+                calendar.src = calendarBlue;  
+            } else if (a === 1) {
+                widget.removeAttribute("class");
+                container.removeAttribute("class");
+                changeDisplay();
+
+
+
+                createHours(intervalHours, info.hour, info);
+                hour.src = hourBlue;
+                // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
+            }
+            
+        }
+    }
 }
 
 
@@ -288,13 +294,13 @@ let info = {};
 
 const addProperties = function(prop, value){
     info[prop] = value;
-    return info;
 }
 
 
-const deleteProperties = function(prop){
-    delete info[prop];
-    return info;
+const deleteProperties = function(...args){
+    for (const prop in args){
+        delete info[args[prop]]
+    }
 }
 
 
@@ -336,9 +342,9 @@ const createCalendar = function(firstDay, actual = firstDay){
                 button.setAttribute("disabled", "true");
             } else {
                 button.addEventListener("click", (event) => {
-                    info = addProperties("day", button.textContent);
-                    info = addProperties("month", actual.month[0]);
-                    info = (button.textContent != actual.day) ? addProperties("hour", firstDay.hour) : addProperties("hour", actual.hour);
+                    addProperties("day", button.textContent);
+                    addProperties("month", actual.month[0]);
+                    (button.textContent != actual.day) ? addProperties("hour", firstDay.hour) : addProperties("hour", actual.hour);
                     updateWidget(event);
                     displayHour(info);
                 });
@@ -536,7 +542,7 @@ const displayDej = function(interval, info){
             button.textContent = hour;
             button.addEventListener("click", (event) => {
                 updateWidget(event)
-                info = addProperties("hour", button.textContent);
+                addProperties("hour", button.textContent);
                 displayPerson(info);
             });
 
@@ -562,7 +568,7 @@ const displayDiner = function(interval, info){
             const hour = interval[x].replace(".", ":");
             button.textContent = hour;
             button.addEventListener("click", (event) => {
-                info = addProperties("hour", button.textContent)
+                addProperties("hour", button.textContent)
                 updateWidget(event)
                 displayPerson(info);
             });
@@ -592,7 +598,7 @@ const createPerson = function(info){
         const button = document.createElement("button");
         button.textContent = x;
         button.addEventListener("click", (event) => {
-            info = addProperties("person", button.textContent);
+            addProperties("person", button.textContent);
             updateWidget(event)
             displayRecap(info);
         })
