@@ -1,29 +1,19 @@
 // IMPORT
 
-import calendarIcon from "../asset/img/calendar_icon.svg";
 import calendarWhite from "../asset/img/calendar_white.svg";
 import calendarBlue from "../asset/img/calendar_blue.svg";
-import calendarAscent from "../asset/img/calendar_ascent.svg";
 
 
-import hourIcon from "../asset/img/clock_icon.svg";
 import hourWhite from "../asset/img/hour_white.svg";
 import hourBlue from "../asset/img/hour_blue.svg";
-import hourAscent from "../asset/img/hour_ascent.svg";
 
-import personIcon from "../asset/img/person_icon.svg";
 import personWhite from "../asset/img/person_white.svg";
 import personBlue from "../asset/img/person_blue.svg";
-import personAscent from "../asset/img/person_ascent.svg";
 
-import recapIcon from "../asset/img/recap_icon.svg";
 import recapWhite from "../asset/img/recap_white.svg";
 import recapBlue from "../asset/img/recap_blue.svg";
-import recapAscent from "../asset/img/recap_ascent.svg";
 
-import separatorIcon from "../asset/img/separator.svg";
 import separatorBlue from "../asset/img/separator_blue.svg";
-import separatorAscent from "../asset/img/separator_ascent.svg";
 
 
 // DISPLAY 
@@ -128,8 +118,11 @@ const updateWidget = function(event){
                     widget.removeAttribute("class");
                     container.removeAttribute("class");
                     changeDisplay();
+
+
+
                     createHours(intervalHours, info.hour, info);
-                    console.log(info)
+                    console.log(info);
                     hour.src = hourBlue;
                     // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
                 }
@@ -139,18 +132,24 @@ const updateWidget = function(event){
         
 
     } else {
-        for(let x = 0; x < state.length; x++){
-            if(target.closest(`.${state[x][0]}`)){
-                widget.removeAttribute("class");
-                widget.classList.toggle(`${state[x][0]}`);
-                state[x][1].src = state[x][2];
-                buttons[x].removeAttribute("disabled");
-            };
-        };
+        updateForward(state, target, buttons);
     };
 
 
 }
+
+
+const updateForward = function(state, target, buttons){
+    for(let x = 0; x < state.length; x++){
+        if(target.closest(`.${state[x][0]}`)){
+            widget.removeAttribute("class");
+            widget.classList.toggle(`${state[x][0]}`);
+            state[x][1].src = state[x][2];
+            buttons[x].removeAttribute("disabled");
+        };
+    };
+}
+
 
 
 const changeDisplay = function(){
