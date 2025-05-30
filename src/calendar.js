@@ -134,11 +134,11 @@ const updateBackward = function(state, target){
                 container.removeAttribute("class");
                 changeDisplay();
                 deleteProperties("month", "day", "hour");
-                createTable();
-                activateArrows(today);
-                createCalendar(Todays1st, today);
+                // createTable();
+                // activateArrows(today);
+                // createCalendar(Todays1st, today);
                 calendarIcon.src = calendarBlue;
-                
+
             } else if (a === 1) {
                 widget.removeAttribute("class");
                 container.removeAttribute("class");
