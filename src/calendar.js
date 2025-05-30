@@ -10,7 +10,6 @@ import hourBlue from "../asset/img/hour_blue.svg";
 import personWhite from "../asset/img/person_white.svg";
 import personBlue from "../asset/img/person_blue.svg";
 
-import recapWhite from "../asset/img/recap_white.svg";
 import recapBlue from "../asset/img/recap_blue.svg";
 
 import separatorBlue from "../asset/img/separator_blue.svg";
@@ -287,6 +286,19 @@ const intervalHours = [
 
 let info = {};
 
+
+const addProperties = function(prop, value){
+    info[prop] = value;
+    return info;
+}
+
+
+const deleteProperties = function(prop){
+    delete info[prop];
+    return info;
+}
+
+
 /* PICK A DAY */
 
 
@@ -314,6 +326,7 @@ const createCalendar = function(firstDay, actual = firstDay){
     calendarBody.forEach((td, index) => {
         const button = document.createElement("button");
         td.appendChild(button);
+        console.log(info);
         
         
         if(index >= firstDay.week[2] && index < (allMonth)){
@@ -491,6 +504,7 @@ const createHours = function(intervalHours, hour, info){
     const div = document.querySelector('#bookingInfo');
     div.classList.toggle("hour");
     div.classList.toggle("day");
+    
 
     const title = document.createElement("h2");
     title.textContent = "Sélectionnez une heure";
