@@ -121,7 +121,6 @@ const updateWidget = function(event){
 
 
                     createHours(intervalHours, info.hour, info);
-                    console.log(info);
                     hour.src = hourBlue;
                     // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
                 }
@@ -337,9 +336,9 @@ const createCalendar = function(firstDay, actual = firstDay){
                 button.setAttribute("disabled", "true");
             } else {
                 button.addEventListener("click", (event) => {
-                    info.day = button.textContent;
-                    info.month = actual.month[0];
-                    info.hour = (button.textContent != actual.day) ? firstDay.hour : actual.hour;
+                    info = addProperties("day", button.textContent);
+                    info = addProperties("month", actual.month[0]);
+                    info = (button.textContent != actual.day) ? addProperties("hour", firstDay.hour) : addProperties("hour", actual.hour);
                     updateWidget(event);
                     displayHour(info);
                 });
@@ -537,7 +536,7 @@ const displayDej = function(interval, info){
             button.textContent = hour;
             button.addEventListener("click", (event) => {
                 updateWidget(event)
-                info.hour = button.textContent;
+                info = addProperties("hour", button.textContent);
                 displayPerson(info);
             });
 
@@ -563,7 +562,7 @@ const displayDiner = function(interval, info){
             const hour = interval[x].replace(".", ":");
             button.textContent = hour;
             button.addEventListener("click", (event) => {
-                info.hour = button.textContent;
+                info = addProperties("hour", button.textContent)
                 updateWidget(event)
                 displayPerson(info);
             });
@@ -593,7 +592,7 @@ const createPerson = function(info){
         const button = document.createElement("button");
         button.textContent = x;
         button.addEventListener("click", (event) => {
-            info.person = button.textContent;
+            info = addProperties("person", button.textContent);
             updateWidget(event)
             displayRecap(info);
         })
