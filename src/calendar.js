@@ -102,7 +102,7 @@ const updateWidget = function(event){
     const target = event.target;
 
     if (target.closest("#widget")) {
-        deleteProperties(12, "ok", target, state, "hour");
+        updateBackward(state, target);
     } else {
         updateForward(state, target, buttons);
     };
@@ -130,14 +130,15 @@ const updateBackward = function(state, target){
         if(target.closest(`.${state[a][0]}`)){
             if(a === 0){
 
-
                 widget.removeAttribute("class");
                 container.removeAttribute("class");
                 changeDisplay();
+                deleteProperties("month", "day", "hour");
                 createTable();
                 activateArrows(today);
                 createCalendar(Todays1st, today);
-                calendar.src = calendarBlue;  
+                calendarIcon.src = calendarBlue;
+                
             } else if (a === 1) {
                 widget.removeAttribute("class");
                 container.removeAttribute("class");
