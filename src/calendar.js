@@ -50,51 +50,55 @@ const createWidget = function() {
     bookingWidget.setAttribute("id", "widget");
     bookingWidget.classList.toggle("day");
 
+
+    const state = [
+        ["day", "calendarIcon", calendarWhite],
+        ["hour", "hour", hourBlue],
+        ["person", "person", personBlue],
+        ["recap", "recap", recapBlue],
+    ];
+
     for (let x=0; x <4; x++){
         const button = document.createElement("button");
         const icon = document.createElement("div");
         const img = document.createElement("img");
-        if (x===0) {
-            img.src = calendarWhite ;
-            img.setAttribute("id", "calendarIcon");
-            button.setAttribute("data-state", "day");
-        };
-        if (x===1) {
-            img.src = hourBlue;
-            img.setAttribute("id", "hour");
-            button.setAttribute("data-state", "hour");
-        };
-        if (x===2) {
-            img.src = personBlue;
-            img.setAttribute("id", "person");
-            button.setAttribute("data-state", "person");
-        };
-        if (x===3) {
-            img.src = recapBlue;
-            img.setAttribute("id", "recap");
-            button.setAttribute("data-state", "recap");
-        };
+        const span = document.createElement("span");
+
+
+        for (let y = 0; y < state.length; y++){
+            if (x === y){
+                img.src = state[y][2];
+                img.setAttribute(`id`, `${state[y][1]}`);
+                span.setAttribute("data-state", `${state[y][0]}`)
+            }
+        }
 
 
         icon.appendChild(img);
+        button.appendChild(icon);
+ 
+        const separator = document.createElement("div");
 
-        button.appendChild(icon)
         if (x < 3){
-            const separator = document.createElement("div");
-            const img = document.createElement("img");
-            img.src = separatorBlue;
-            separator.appendChild(img)
-            button.appendChild(separator);
+
+            const imgSeparator = document.createElement("img");
+            imgSeparator.src = separatorBlue;
+            separator.appendChild(imgSeparator);
+            
         };
 
+        button.appendChild(separator);
         
         button.addEventListener("click", (event) => {
             updateWidget(event);
         });
         
-        button.setAttribute("disabled", "true");
+
+        button.appendChild(span);
+        // button.setAttribute("disabled", "false");
         bookingWidget.appendChild(button);
     };
+
 
     visualRecap.appendChild(bookingWidget);
     return visualRecap;
@@ -119,10 +123,10 @@ const updateWidget = function(event){
     ];
 
     const target = event.target;
-    console.log(target);
+    const data = event.target.getAttribute("data-state");
 
     if (target.closest("#widget")) {
-        updateBackward(state, target, container);
+        updateBackward(state, target, data);
     } else {
         updateForward(state, target, buttons);
     };
@@ -147,45 +151,45 @@ const updateForward = function(state, target, buttons){
 }
 
 
-const updateBackward = function(state, target){
+const updateBackward = function(state, target, data){
 
 
-    for (let a = 1; a < state.length; a++){
+    // for (let a = 1; a < state.length; a++){
         
-        if(target.closest(`.${state[a][0]}`)){
-            if(a === 1){
+    //     if(target.closest(`.${state[a][0]}`)){
+    //         if(a === 1){
 
-                console.log(target.getAttribute("data-state"))
-                widget.removeAttribute("class");
-                widget.classList.toggle("day");
+    //             console.log(target.getAttribute("data-state"))
+    //             widget.removeAttribute("class");
+    //             widget.classList.toggle("day");
                 
-                changeDisplay();
-                createTable();
-                activateArrows(today);
-                createCalendar(Todays1st, today);
+    //             changeDisplay();
+    //             createTable();
+    //             activateArrows(today);
+    //             createCalendar(Todays1st, today);
 
-            } else if (a === 2) {
+    //         } else if (a === 2) {
 
-                widget.removeAttribute("class");
-                widget.classList.toggle("hour");
-
-
-                changeDisplay();
-                deleteProperties("hour");
-                createHours(intervalHours, info.hourOfDay, info);
-
-                hour.src = hourWhite;
-                // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
-            } else {
+    //             widget.removeAttribute("class");
+    //             widget.classList.toggle("hour");
 
 
+    //             changeDisplay();
+    //             deleteProperties("hour");
+    //             createHours(intervalHours, info.hourOfDay, info);
+
+    //             hour.src = hourWhite;
+    //             // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
+    //         } else {
 
 
 
-            }
+
+
+    //         }
             
-        }
-    }
+    //     }
+    // }
 }
 
 
