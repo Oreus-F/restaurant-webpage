@@ -372,6 +372,10 @@ nav > button:last-child:hover{
     position: absolute;
     inset: 0;
     background-color: transparent;
+}
+
+
+#widget > button:not(:disabled) > span {
     cursor: pointer;
 }
 
