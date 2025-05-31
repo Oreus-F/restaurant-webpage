@@ -95,7 +95,7 @@ const createWidget = function() {
         
 
         button.appendChild(span);
-        // button.setAttribute("disabled", "false");
+        button.setAttribute("disabled", "true");
         bookingWidget.appendChild(button);
     };
 
@@ -121,6 +121,9 @@ const updateWidget = function(event){
         ["person", person, personWhite, personBlue, displayPerson],
         ["recap", recap, recapWhite, recapBlue, displayRecap],
     ];
+
+
+    const icons = [calendar, hour, person, recap];
 
     const target = event.target;
     const data = event.target.getAttribute("data-state");
@@ -153,7 +156,7 @@ const updateForward = function(state, target, buttons){
 }
 
 
-const updateBackward = function(state, data){
+const updateBackward = function(state, data, buttons){
 
     for (let a = 0; a < state.length - 1; a++){
         
@@ -171,49 +174,19 @@ const updateBackward = function(state, data){
                 activateArrows(today);
                 createCalendar(Todays1st, today);
 
-                state[a+1][1].src = state[a+1][3];
-
             } else {
 
                 widget.classList.toggle(`${state[a][0]}`);
                 state[a+1][1].src = state[a+1][3];
                 state[a][4](info);
-            }
+            };
+
+            // MODIFIER ICONS
             
-        }
-    }
+        };
+    };
 
-    // for (let a = 1; a < state.length; a++){
-        
-    //     if(target.closest(`.${state[a][0]}`)){
-    //         if(a === 1){
-
-    //             console.log(target.getAttribute("data-state"))
-
-
-    //         } else if (a === 2) {
-
-    //             widget.removeAttribute("class");
-    //             widget.classList.toggle("hour");
-
-
-    //             changeDisplay();
-    //             deleteProperties("hour");
-    //             createHours(intervalHours, info.hourOfDay, info);
-
-    //             hour.src = hourWhite;
-    //             // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
-    //         } else {
-
-
-
-
-
-    //         }
-            
-    //     }
-    // }
-}
+};
 
 
 
