@@ -102,7 +102,7 @@ const updateWidget = function(event){
     const target = event.target;
 
     if (target.closest("#widget")) {
-        updateBackward(state, target);
+        updateBackward(state, target, container);
     } else {
         updateForward(state, target, buttons);
     };
@@ -123,7 +123,7 @@ const updateForward = function(state, target, buttons){
 }
 
 
-const updateBackward = function(state, target){
+const updateBackward = function(state, target, container){
 
 
     for (let a = 0; a < state.length; a++){
@@ -134,18 +134,17 @@ const updateBackward = function(state, target){
                 container.removeAttribute("class");
                 changeDisplay();
                 deleteProperties("month", "day", "hour");
-                // createTable();
-                // activateArrows(today);
-                // createCalendar(Todays1st, today);
+                createTable();
+                console.log(today);
+                activateArrows(today);
+                createCalendar(Todays1st, today);
                 calendarIcon.src = calendarBlue;
 
             } else if (a === 1) {
                 widget.removeAttribute("class");
                 container.removeAttribute("class");
                 changeDisplay();
-
-
-
+                deleteProperties("hour");
                 createHours(intervalHours, info.hour, info);
                 hour.src = hourBlue;
                 // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
@@ -332,8 +331,6 @@ const createCalendar = function(firstDay, actual = firstDay){
     calendarBody.forEach((td, index) => {
         const button = document.createElement("button");
         td.appendChild(button);
-        console.log(info);
-        
         
         if(index >= firstDay.week[2] && index < (allMonth)){
             button.textContent = counter;
@@ -713,15 +710,8 @@ const createForm = function(info){
 }
 
 
-
-
-const dialog = document.querySelector("#reservation");
-
 const today = getInfos();
 const Todays1st = getInfos(today.month[1], 1, today.year);
 
-// dialog.showModal();
-
-// displayHour(today)
 
 export default displayCalendar
