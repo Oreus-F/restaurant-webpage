@@ -11,6 +11,7 @@ import personWhite from "../asset/img/person_white.svg";
 import personBlue from "../asset/img/person_blue.svg";
 
 import recapBlue from "../asset/img/recap_blue.svg";
+import recapWhite from "../asset/img/recap_white.svg";
 
 import separatorBlue from "../asset/img/separator_blue.svg";
 
@@ -46,13 +47,14 @@ const createDialog = function(){
 const createWidget = function() {
     const visualRecap = document.createElement("div");
     const bookingWidget = document.createElement("div");
-    bookingWidget.setAttribute("id", "widget")
+    bookingWidget.setAttribute("id", "widget");
+    bookingWidget.classList.toggle("day");
 
     for (let x=0; x <4; x++){
         const button = document.createElement("button");
         const icon = document.createElement("div");
         const img = document.createElement("img");
-        if (x===0) {img.src = calendarBlue ; img.setAttribute("id", "calendarIcon")};
+        if (x===0) {img.src = calendarWhite ; img.setAttribute("id", "calendarIcon")};
         if (x===1) {img.src = hourBlue ; img.setAttribute("id", "hour")};
         if (x===2) {img.src = personBlue ; img.setAttribute("id", "person")};
         if (x===3) {img.src = recapBlue ; img.setAttribute("id", "recap")};
@@ -97,6 +99,7 @@ const updateWidget = function(event){
         ["day", calendar, calendarWhite, calendarBlue],
         ["hour", hour, hourWhite, hourBlue],
         ["person", person, personWhite, personBlue],
+        ["recap", recap, recapWhite, recapBlue],
     ];
 
     const target = event.target;
@@ -112,12 +115,16 @@ const updateWidget = function(event){
 
 
 const updateForward = function(state, target, buttons){
+
     for(let x = 0; x < state.length; x++){
+
         if(target.closest(`.${state[x][0]}`)){
+
             widget.removeAttribute("class");
-            widget.classList.toggle(`${state[x][0]}`);
-            state[x][1].src = state[x][2];
+            widget.classList.toggle(`${state[x+1][0]}`);
+            state[x+1][1].src = state[x+1][2];
             buttons[x].removeAttribute("disabled");
+
         };
     };
 }
@@ -133,7 +140,7 @@ const updateBackward = function(state, target, container){
                 widget.removeAttribute("class");
                 container.removeAttribute("class");
                 changeDisplay();
-                deleteProperties("month", "day", "hour");
+                deleteProperties("month", "day", "hour", "hourOfDay");
                 createTable();
                 console.log(today);
                 activateArrows(today);
@@ -142,10 +149,12 @@ const updateBackward = function(state, target, container){
 
             } else if (a === 1) {
                 widget.removeAttribute("class");
+                widget.classList.toggle("day");
                 container.removeAttribute("class");
                 changeDisplay();
                 deleteProperties("hour");
-                createHours(intervalHours, info.hour, info);
+                createHours(intervalHours, info.hourOfDay, info);
+
                 hour.src = hourBlue;
                 // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
             }
@@ -176,7 +185,7 @@ const displayCalendar = function(){
 const displayHour = function(info){
 
     changeDisplay();
-    createHours(intervalHours, info.hour, info);    
+    createHours(intervalHours, info.hourOfDay, info);    
 
 };
 
@@ -342,7 +351,7 @@ const createCalendar = function(firstDay, actual = firstDay){
                 button.addEventListener("click", (event) => {
                     addProperties("day", button.textContent);
                     addProperties("month", actual.month[0]);
-                    (button.textContent != actual.day) ? addProperties("hour", firstDay.hour) : addProperties("hour", actual.hour);
+                    (button.textContent != actual.day) ? addProperties("hourOfDay", firstDay.hour) : addProperties("hourOfDay", actual.hour);
                     updateWidget(event);
                     displayHour(info);
                 });
@@ -504,6 +513,10 @@ const activateArrows = function(today){
 
 
 const createHours = function(intervalHours, hour, info){
+
+    console.log(hour)
+    console.log(info);
+
     const div = document.querySelector('#bookingInfo');
     div.classList.toggle("hour");
     div.classList.toggle("day");
