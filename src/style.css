@@ -368,7 +368,7 @@ nav > button:last-child:hover{
 }
 
 
-#widget > button:first-child > span{
+#widget > button > span{
     position: absolute;
     inset: 0;
     background-color: transparent;
