@@ -124,6 +124,8 @@ const updateWidget = function(event){
 
     const target = event.target;
     const data = event.target.getAttribute("data-state");
+    console.log(data)
+
 
     if (target.closest("#widget")) {
         updateBackward(state, target, data);
@@ -153,6 +155,11 @@ const updateForward = function(state, target, buttons){
 
 const updateBackward = function(state, target, data){
 
+    for (let a = 0; a < state.length; a++){
+        if(data === state[a][0]){
+            
+        }
+    }
 
     // for (let a = 1; a < state.length; a++){
         
