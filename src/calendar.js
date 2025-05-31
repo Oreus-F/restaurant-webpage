@@ -54,10 +54,26 @@ const createWidget = function() {
         const button = document.createElement("button");
         const icon = document.createElement("div");
         const img = document.createElement("img");
-        if (x===0) {img.src = calendarWhite ; img.setAttribute("id", "calendarIcon")};
-        if (x===1) {img.src = hourBlue ; img.setAttribute("id", "hour")};
-        if (x===2) {img.src = personBlue ; img.setAttribute("id", "person")};
-        if (x===3) {img.src = recapBlue ; img.setAttribute("id", "recap")};
+        if (x===0) {
+            img.src = calendarWhite ;
+            img.setAttribute("id", "calendarIcon");
+            button.setAttribute("data-state", "day");
+        };
+        if (x===1) {
+            img.src = hourBlue;
+            img.setAttribute("id", "hour");
+            button.setAttribute("data-state", "hour");
+        };
+        if (x===2) {
+            img.src = personBlue;
+            img.setAttribute("id", "person");
+            button.setAttribute("data-state", "person");
+        };
+        if (x===3) {
+            img.src = recapBlue;
+            img.setAttribute("id", "recap");
+            button.setAttribute("data-state", "recap");
+        };
 
 
         icon.appendChild(img);
@@ -103,6 +119,7 @@ const updateWidget = function(event){
     ];
 
     const target = event.target;
+    console.log(target);
 
     if (target.closest("#widget")) {
         updateBackward(state, target, container);
@@ -130,33 +147,41 @@ const updateForward = function(state, target, buttons){
 }
 
 
-const updateBackward = function(state, target, container){
+const updateBackward = function(state, target){
 
 
-    for (let a = 0; a < state.length; a++){
+    for (let a = 1; a < state.length; a++){
+        
         if(target.closest(`.${state[a][0]}`)){
-            if(a === 0){
+            if(a === 1){
 
-                widget.removeAttribute("class");
-                container.removeAttribute("class");
-                changeDisplay();
-                deleteProperties("month", "day", "hour", "hourOfDay");
-                createTable();
-                console.log(today);
-                activateArrows(today);
-                createCalendar(Todays1st, today);
-                calendarIcon.src = calendarBlue;
-
-            } else if (a === 1) {
+                console.log(target.getAttribute("data-state"))
                 widget.removeAttribute("class");
                 widget.classList.toggle("day");
-                container.removeAttribute("class");
+                
+                changeDisplay();
+                createTable();
+                activateArrows(today);
+                createCalendar(Todays1st, today);
+
+            } else if (a === 2) {
+
+                widget.removeAttribute("class");
+                widget.classList.toggle("hour");
+
+
                 changeDisplay();
                 deleteProperties("hour");
                 createHours(intervalHours, info.hourOfDay, info);
 
-                hour.src = hourBlue;
+                hour.src = hourWhite;
                 // TROUVER UN MOYEN D'AVOIRS LES BONNES INFOS !
+            } else {
+
+
+
+
+
             }
             
         }
@@ -167,6 +192,7 @@ const updateBackward = function(state, target, container){
 
 const changeDisplay = function(){
     const div = document.querySelector("#bookingInfo");
+    div.removeAttribute("class");
     div.replaceChildren();
 };
 
@@ -514,12 +540,8 @@ const activateArrows = function(today){
 
 const createHours = function(intervalHours, hour, info){
 
-    console.log(hour)
-    console.log(info);
-
     const div = document.querySelector('#bookingInfo');
     div.classList.toggle("hour");
-    div.classList.toggle("day");
     
 
     const title = document.createElement("h2");
@@ -596,7 +618,6 @@ const displayDiner = function(interval, info){
 
 const createPerson = function(info){
     const div = document.querySelector('#bookingInfo');
-    div.classList.toggle("hour");
     div.classList.toggle("person");
 
     const title = document.createElement("h2");
@@ -626,7 +647,6 @@ const createPerson = function(info){
 
 const createRecap = function(info){
     const div = document.querySelector('#bookingInfo');
-    div.classList.toggle("person");
     div.classList.toggle("recap");
     
     const recap = showRecap(info);
