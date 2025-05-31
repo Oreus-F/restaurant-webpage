@@ -117,9 +117,9 @@ const updateWidget = function(event){
 
     const state = [
         ["day", calendar, calendarWhite, calendarBlue],
-        ["hour", hour, hourWhite, hourBlue],
-        ["person", person, personWhite, personBlue],
-        ["recap", recap, recapWhite, recapBlue],
+        ["hour", hour, hourWhite, hourBlue, displayHour],
+        ["person", person, personWhite, personBlue, displayPerson],
+        ["recap", recap, recapWhite, recapBlue, displayRecap],
     ];
 
     const target = event.target;
@@ -128,7 +128,7 @@ const updateWidget = function(event){
 
 
     if (target.closest("#widget")) {
-        updateBackward(state, target, data);
+        updateBackward(state, data);
     } else {
         updateForward(state, target, buttons);
     };
@@ -153,10 +153,32 @@ const updateForward = function(state, target, buttons){
 }
 
 
-const updateBackward = function(state, target, data){
+const updateBackward = function(state, data){
 
-    for (let a = 0; a < state.length; a++){
+    for (let a = 0; a < state.length - 1; a++){
+        
         if(data === state[a][0]){
+
+            widget.removeAttribute("class");
+            
+
+            if (a === 0){
+
+                widget.classList.toggle(`${state[a][0]}`);
+                
+                changeDisplay();
+                createTable();
+                activateArrows(today);
+                createCalendar(Todays1st, today);
+
+                state[a+1][1].src = state[a+1][3];
+
+            } else {
+
+                widget.classList.toggle(`${state[a][0]}`);
+                state[a+1][1].src = state[a+1][3];
+                state[a][4](info);
+            }
             
         }
     }
@@ -167,13 +189,7 @@ const updateBackward = function(state, target, data){
     //         if(a === 1){
 
     //             console.log(target.getAttribute("data-state"))
-    //             widget.removeAttribute("class");
-    //             widget.classList.toggle("day");
-                
-    //             changeDisplay();
-    //             createTable();
-    //             activateArrows(today);
-    //             createCalendar(Todays1st, today);
+
 
     //         } else if (a === 2) {
 
