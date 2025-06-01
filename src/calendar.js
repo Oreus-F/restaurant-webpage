@@ -334,13 +334,6 @@ const addProperties = function(prop, value){
 }
 
 
-const deleteProperties = function(...args){
-    for (const prop in args){
-        delete info[args[prop]]
-    }
-}
-
-
 /* PICK A DAY */
 
 
