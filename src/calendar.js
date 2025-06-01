@@ -116,22 +116,22 @@ const updateWidget = function(event){
 
 
     const state = [
-        ["day", calendar, calendarWhite, calendarBlue],
-        ["hour", hour, hourWhite, hourBlue, displayHour],
-        ["person", person, personWhite, personBlue, displayPerson],
-        ["recap", recap, recapWhite, recapBlue, displayRecap],
+        ["day", calendar, calendarWhite, calendarBlue, buttons[0]],
+        ["hour", hour, hourWhite, hourBlue, buttons[1], displayHour],
+        ["person", person, personWhite, personBlue, buttons[2], displayPerson],
+        ["recap", recap, recapWhite, recapBlue, buttons[3], displayRecap],
+        [calendar, hour, person, recap],
     ];
 
 
-    const icons = [calendar, hour, person, recap];
+    
 
     const target = event.target;
     const data = event.target.getAttribute("data-state");
-    console.log(data)
 
 
     if (target.closest("#widget")) {
-        updateBackward(state, data);
+        updateBackward(state, data, buttons);
     } else {
         updateForward(state, target, buttons);
     };
@@ -142,7 +142,7 @@ const updateWidget = function(event){
 
 const updateForward = function(state, target, buttons){
 
-    for(let x = 0; x < state.length; x++){
+    for(let x = 0; x < state.length -1; x++){
 
         if(target.closest(`.${state[x][0]}`)){
 
@@ -158,7 +158,7 @@ const updateForward = function(state, target, buttons){
 
 const updateBackward = function(state, data, buttons){
 
-    for (let a = 0; a < state.length - 1; a++){
+    for (let a = 0; a < state.length - 2; a++){
         
         if(data === state[a][0]){
 
@@ -177,11 +177,14 @@ const updateBackward = function(state, data, buttons){
             } else {
 
                 widget.classList.toggle(`${state[a][0]}`);
-                state[a+1][1].src = state[a+1][3];
-                state[a][4](info);
+                state[a][5](info);
             };
 
-            // MODIFIER ICONS
+            for (let y= 0; y < state.length - 1; y++){
+                if (y > a){
+                    state[y][1].src = state[y][3];
+                }
+            }
             
         };
     };
