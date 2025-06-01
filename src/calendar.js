@@ -27,7 +27,20 @@ const createDialog = function(){
     const div = document.createElement("div");
     const title = document.createElement("h1");
     title.textContent = "réservation";
+
+    const close = document.createElement("span");
+    const button = document.createElement("button");
+    button.textContent = "X";
+
+    button.addEventListener("click", () => {
+        closeDialog();
+    })
+
+    close.appendChild(button);
+    
     div.appendChild(title)
+    div.appendChild(close);
+    
     dialog.appendChild(div);
 
     const widget = createWidget();
@@ -39,7 +52,10 @@ const createDialog = function(){
 
     dialog.appendChild(booking);
 
-    const close = document.createElement("span");
+
+
+
+
     content.appendChild(dialog);
 }
 

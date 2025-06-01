@@ -318,6 +318,36 @@ nav > button:last-child:hover{
     justify-content: center;
     background-color: var(--secondary-color);
 
+    position: relative;
+
+}
+
+
+#reservation > div:first-child > span{
+    position: absolute;
+
+    display: flex;
+    width: 35px;
+    height: 35px;
+
+    right: 5%;
+    top: 10%;
+}
+
+
+#reservation > div:first-child > span > button {
+    flex: 1;
+    border-radius: 2rem;
+    border: none;
+    background: none;
+    color: white;
+    font-size: 1rem;
+}
+
+
+#reservation > div:first-child > span > button:hover{
+    background-color: var(--active-button);
+    color: var(--secondary-color);
 }
 
 
