@@ -181,9 +181,8 @@ const updateBackward = function(state, data, buttons){
             };
 
             for (let y= 0; y < state.length - 1; y++){
-                if (y > a){
-                    state[y][1].src = state[y][3];
-                }
+                if (y > a){state[y][1].src = state[y][3]};
+                if (y >= a){state[y][4].setAttribute("disabled", "true")};  
             }
             
         };
