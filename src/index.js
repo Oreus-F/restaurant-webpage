@@ -3,9 +3,11 @@ import { resetDOM } from "./resetpage";
 import { loading_homepage } from "./homepage";
 import { loadingMenu } from "./menu";
 import displayReservation from "./calendar";
+import { loadingAboutUs } from "./about_us";
 
 
-// resetDOM();
+resetDOM();
 // loading_homepage();
-loadingMenu();
+// loadingMenu();
 // displayReservation();
+loadingAboutUs()
