@@ -47,7 +47,11 @@ header{
 
 header.menu button{
     color: var(--secondary-color);
-    text-shadow: none;
+}
+
+header.homepage button{
+    text-shadow: var(--secondary-color) 1px 1px 0px;
+
 }
 
 nav{
@@ -73,7 +77,6 @@ nav > button {
     font-size: 1.5rem;
 
     cursor: pointer;
-    text-shadow: var(--secondary-color) 1px 1px 0px;
 }
 
 
