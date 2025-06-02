@@ -721,4 +721,31 @@ textarea:focus{
 #aboutUs{
     background-color: var(--secondary-color);
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+#aboutUs > div:first-child{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    gap: 3rem;
+}
+
+
+#aboutUs h1{
+    font-size: 5rem;
+    color: var(--ascent-color);
+    margin-top: 7rem;
+    text-align: center;
+
+    flex-basis: 8rem;
+}
+
+
+#aboutUs p{
+    color: var(--main-color);
+    flex: 1;
 }
