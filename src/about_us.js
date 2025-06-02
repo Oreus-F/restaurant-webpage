@@ -1,3 +1,6 @@
+import Lorem from "../asset/txt/Lorem.txt"
+
+
 const loadingAboutUs = function(){
     const header = document.querySelector("header");
     header.classList.toggle("about_us");
@@ -26,6 +29,10 @@ const createAboutSection = function(){
     h1.textContent = "About Us";
 
     div.appendChild(h1);
+
+    const p = document.createElement("p");
+    p.textContent = Lorem;
+    div.appendChild(p);
 
     return div;
 }
