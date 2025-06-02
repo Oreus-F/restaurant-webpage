@@ -8,4 +8,4 @@ import displayReservation from "./calendar";
 // resetDOM();
 // loading_homepage();
 loadingMenu();
-displayReservation();
+// displayReservation();
