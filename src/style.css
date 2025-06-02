@@ -54,6 +54,12 @@ header.homepage button{
 
 }
 
+
+header.about_us {
+    background-color: var(--secondary-color);
+}
+
+
 nav{
     height: 100%;
     background: inherit;
@@ -135,10 +141,16 @@ nav > button:last-child:hover{
 
 /* PAGE MENU */
 
+
+#content.menu > div.content-center{
+    color: var(--secondary-color);
+}
+
+
 .content-center{
     margin: auto;
     width: 55%;
-    color: var(--secondary-color);
+   
 }
 
 
@@ -696,4 +708,17 @@ textarea:focus{
     background-color: var(--secondary-color);
     color: white;
     cursor: pointer;
+}
+
+
+/* About US */
+
+#content:has(#aboutUs){
+    display: flex;
+}
+
+
+#aboutUs{
+    background-color: var(--secondary-color);
+    flex: 1;
 }
