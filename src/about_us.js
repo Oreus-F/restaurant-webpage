@@ -14,6 +14,7 @@ const loadingAboutUs = function(){
 
 
     div.appendChild(createAboutSection());
+    div.appendChild(createContact());
 
 
     content.appendChild(div);
@@ -39,16 +40,28 @@ const createAboutSection = function(){
     p2.textContent = AU_TXT[1];
     div.appendChild(p2);
 
-
+    const p3 = document.createElement("p");
     const link = document.createElement("a");
     link.textContent = "Le P'tit Breton";
     link.setAttribute("href", "https://www.leptitbreton-creperie.com");
     link.setAttribute("rel", "noreferrer noopener");
     link.setAttribute("target", "_blank");
-    div.appendChild(link)
+    p3.appendChild(link)
+    div.appendChild(p3)
     
 
     return div;
+}
+
+
+const createContact = function(){
+    const div = document.createElement("div");
+    div.classList.toggle("content-center");
+
+
+
+
+    return div
 }
 
 
