@@ -306,7 +306,7 @@ nav > button:last-child:hover{
     width: 31rem;
     overflow: hidden;
     height: auto;
-    max-height: 80vh;
+    max-height: 100vh;
     
     display: grid;
     grid-template-rows: 7rem 6rem 1fr;
