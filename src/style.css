@@ -60,6 +60,12 @@ header.about_us {
 }
 
 
+header.about_us > nav > button:last-child:hover{
+    background-color: var(--main-color);
+    color: var(--ascent-color);
+}
+
+
 nav{
     height: 100%;
     background: inherit;
@@ -727,25 +733,33 @@ textarea:focus{
 
 
 #aboutUs > div:first-child{
-    display: flex;
-    flex-direction: column;
     flex: 1;
 
-    gap: 3rem;
+    display: grid;
+    grid-template-rows: 8rem 5rem 5rem 2rem;
+    row-gap: 1rem;
+
+    padding-top: 4rem;
+
+    text-align: center;
 }
 
 
 #aboutUs h1{
     font-size: 5rem;
     color: var(--ascent-color);
-    margin-top: 7rem;
     text-align: center;
 
-    flex-basis: 8rem;
 }
 
 
 #aboutUs p{
     color: var(--main-color);
     flex: 1;
+}
+
+
+#aboutUs a{
+    color: var(--ascent-color);
+    text-decoration: none;
 }
