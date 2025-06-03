@@ -301,11 +301,12 @@ nav > button:last-child:hover{
     
 #reservation{
     inset: 0;
-    margin: auto;
+    margin: 2rem auto;
     border: none;
-    width: 29rem;
+    width: 31rem;
     overflow: hidden;
     height: auto;
+    max-height: 80vh;
     
     display: grid;
     grid-template-rows: 7rem 6rem 1fr;
@@ -471,7 +472,7 @@ table{
 }
 
 caption, th {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     text-transform: uppercase;
     font-weight: 600;
 }
