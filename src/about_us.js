@@ -1,7 +1,9 @@
 import TXT_AboutUS from "../asset/txt/AboutUS.txt"
 const AU_TXT = TXT_AboutUS.split(";");
 
-import metroIcon from "../asset/img/metro.svg";
+import metroIcon from "../asset/img/metro-ascent.svg";
+import busIcon from "../asset/img/bus-ascent.svg";
+import restaurantImg from "../asset/img/ptitBreton.jpg";
 
 
 const loadingAboutUs = function(){
@@ -43,13 +45,21 @@ const createAboutSection = function(){
     div.appendChild(p2);
 
     const p3 = document.createElement("p");
+    p3.textContent = AU_TXT[2];
+    div.appendChild(p3);
+
+    const p4 = document.createElement("p");
+    p4.textContent = AU_TXT[3];
+    div.appendChild(p4);
+
+    const p5 = document.createElement("p");
     const link = document.createElement("a");
     link.textContent = "Le P'tit Breton";
     link.setAttribute("href", "https://www.leptitbreton-creperie.com");
     link.setAttribute("rel", "noreferrer noopener");
     link.setAttribute("target", "_blank");
-    p3.appendChild(link)
-    div.appendChild(p3)
+    p5.appendChild(link);
+    div.appendChild(p5);
     
 
     return div;
@@ -65,8 +75,9 @@ const createContact = function(){
     div.appendChild(h1);
 
     const container = document.createElement("div");
-    const img= document.createElement("img");
-
+    container.classList.toggle("adress");
+    const img = document.createElement("img");
+    img.src = restaurantImg;
 
     container.appendChild(img);
 
@@ -77,9 +88,26 @@ const createContact = function(){
     const hour = document.createElement("p");
     hour.textContent = "12.00 - 15.00  / 19.00 - 22.30";
 
+    container.appendChild(name);
+    container.appendChild(adress);
+    container.appendChild(hour);
+    container.appendChild(createAccess());
+
+    div.appendChild(container);
+  
+
+
+    return div
+}
+
+
+const createAccess = function(){
+    const div = document.createElement("div");
+
     const metro = document.createElement("p");
     const span = document.createElement("span");
     const iconImg = document.createElement("img");
+    
     iconImg.src = metroIcon;
     iconImg.setAttribute("height", "20px");
     iconImg.setAttribute("width", "20px");
@@ -88,8 +116,31 @@ const createContact = function(){
     metro.appendChild(span);
 
     const span2 = document.createElement("span");
-    span2.textContent = "Somewhere Station"
-    metro.appendChild(span2)
+    span2.textContent = "Quelque part Station"
+    metro.appendChild(span2);
+
+    const bus = document.createElement("p");
+    const span3 = document.createElement("span");
+    const busImg = document.createElement("img");
+
+    busImg.src = busIcon;
+    busImg.setAttribute("height", "20px");
+    busImg.setAttribute("width", "20px");
+
+    span3.appendChild(busImg);
+    bus.appendChild(span3);
+
+    const span4 = document.createElement("span");
+    span4.textContent = "Probablement le lieu"
+    bus.appendChild(span4);
+    
+
+    div.appendChild(metro);
+    div.appendChild(bus)
+
+    return div;
+}
+
 
     /* 
     
@@ -100,14 +151,5 @@ const createContact = function(){
     - garder les écrans en full screen pour les futurs travaux ! 
     
     */
-    
-    
-
-
-    return div
-}
-
-
-
 
 export {loadingAboutUs};
