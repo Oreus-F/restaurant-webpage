@@ -4,6 +4,7 @@ const AU_TXT = TXT_AboutUS.split(";");
 import metroIcon from "../asset/img/metro-ascent.svg";
 import busIcon from "../asset/img/bus-ascent.svg";
 import restaurantImg from "../asset/img/ptitBreton.jpg";
+import phoneIcon from "../asset/img/phone.svg";
 
 
 const loadingAboutUs = function(){
@@ -143,12 +144,10 @@ const createAccess = function(){
 
 
     /* 
-    
-    - trouver meilleure icon pour metro et bus 
-    - soit trouver la bonne couleur soit la changer (icon)
+
     - placer faux numéro de tel 
     - créer le grid element pour tout placer
-    - garder les écrans en full screen pour les futurs travaux ! 
+
     
     */
 
