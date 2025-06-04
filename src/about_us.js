@@ -7,6 +7,9 @@ import restaurantImg from "../asset/img/ptitBreton.jpg";
 import phoneIcon from "../asset/img/phone.svg";
 
 
+import { openHour } from "./variables";
+
+
 const loadingAboutUs = function(){
     const header = document.querySelector("header");
     header.classList.toggle("about_us");
@@ -75,13 +78,12 @@ const createContact = function(){
     const name = document.createElement("p");
     name.textContent = "Odin's crêperie";
     const adress = document.createElement("p");
-    adress.textContent = "11 rue d'Odin";
-    const hour = document.createElement("p");
-    hour.textContent = "12.00 - 15.00  / 19.00 - 22.30";
-
+    adress.textContent = "11 rue d'Odin, 75000 PARIS";
+    
     container.appendChild(name);
     container.appendChild(adress);
-    container.appendChild(hour);
+    container.appendChild(createInfo(phoneIcon, "01 11 11 11 11"));
+    
     container.appendChild(displayAccess());
 
     div.appendChild(container);
@@ -95,15 +97,15 @@ const createContact = function(){
 const displayAccess = function(){
     const div = document.createElement("div");
 
-    div.appendChild(createAccess(metroIcon, "Quelque part Station"));
-    div.appendChild(createAccess(busIcon, "Probablement le lieu"))
-    div.appendChild(createAccess(phoneIcon, "+331 11 11 11 11"));
+    div.appendChild(createInfo(metroIcon, "Quelque part Station"));
+    div.appendChild(createInfo(busIcon, "Probablement le lieu"))
+    
 
     return div;
 }
 
 
-const createAccess = function(source, text){
+const createInfo = function(source, text){
     const p = document.createElement("p");
     const span = document.createElement("span");
     const icon = document.createElement("img");
@@ -124,12 +126,39 @@ const createAccess = function(source, text){
 }
 
 
-    /* 
 
-    - placer faux numéro de tel 
-    - créer le grid element pour tout placer
+const displayHour = function(){
+    const div = document.createElement('div');
 
-    
-    */
+
+
+}
+
+
+
+const createSchedule = function(interval, week, index){
+
+    const p = document.createElement("p");
+    const spanW = document.createElement("span");
+    spanW.textContent = week[index][0];
+
+    const spanH = document.createElement("span");
+    spanH.textContent = interval[0];
+
+    p.appendChild(spanW);
+    p.appendChild(spanH);
+
+    return p
+}
+
+
+
+/* 
+
+- placer faux numéro de tel 
+- créer le grid element pour tout placer
+
+
+*/
 
 export {loadingAboutUs};
