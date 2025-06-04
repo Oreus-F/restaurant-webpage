@@ -7,7 +7,7 @@ import restaurantImg from "../asset/img/ptitBreton.jpg";
 import phoneIcon from "../asset/img/phone.svg";
 
 
-import { openHour } from "./variables";
+import { openHour, weeks } from "./variables";
 
 
 const loadingAboutUs = function(){
@@ -66,43 +66,88 @@ const createContact = function(){
 
     const h1 = document.createElement('h1');
     h1.textContent = "Contact";
-    div.appendChild(h1);
 
-    const container = document.createElement("div");
-    container.classList.toggle("adress");
+
+    div.appendChild(h1);
+    div.appendChild(displayLocation());
+    div.appendChild(displayInformation())
+    
+    return div
+}
+
+
+const displayLocation = function(){
+    const div = document.createElement("div");
+    div.classList.toggle("adress");
     const img = document.createElement("img");
     img.src = restaurantImg;
 
-    container.appendChild(img);
+    div.appendChild(img);
 
     const name = document.createElement("p");
     name.textContent = "Odin's crêperie";
     const adress = document.createElement("p");
     adress.textContent = "11 rue d'Odin, 75000 PARIS";
     
-    container.appendChild(name);
-    container.appendChild(adress);
-    container.appendChild(createInfo(phoneIcon, "01 11 11 11 11"));
-    
-    container.appendChild(displayAccess());
+    div.appendChild(name);
+    div.appendChild(adress);
+    div.appendChild(createInfo(phoneIcon, "01 11 11 11 11"));
 
-    div.appendChild(container);
-  
+    const location = document.createElement("div");
+    location.appendChild(createInfo(metroIcon, "Quelque part Station"));
+    location.appendChild(createInfo(busIcon, "Probablement le lieu"));
 
+    div.appendChild(location);
 
     return div
 }
 
 
-const displayAccess = function(){
+
+const displayInformation = function(){
     const div = document.createElement("div");
+    div.classList.toggle("informations");
 
-    div.appendChild(createInfo(metroIcon, "Quelque part Station"));
-    div.appendChild(createInfo(busIcon, "Probablement le lieu"))
-    
 
-    return div;
+    div.appendChild(displayHour());
+
+    return div
 }
+
+
+
+const displayHour = function(){
+    const div = document.createElement('div');
+    let size = Object.keys(weeks).length
+
+    const h2 = document.createElement("h2");
+    h2.textContent = "horaires";
+    div.appendChild(h2);
+
+    for (let x= 0; x < size; x++){
+        div.appendChild(createSchedule(openHour, weeks, x))
+    };
+
+    return div
+}
+
+
+
+const createSchedule = function(hour, week, index){
+
+    const p = document.createElement("p");
+    const spanW = document.createElement("span");
+    spanW.textContent = week[index][0];
+
+    const spanH = document.createElement("span");
+    spanH.textContent = `${hour[0]}-${hour[1]} / ${hour[2]}-${hour[3]}`;
+
+    p.appendChild(spanW);
+    p.appendChild(spanH);
+
+    return p
+}
+
 
 
 const createInfo = function(source, text){
@@ -111,8 +156,8 @@ const createInfo = function(source, text){
     const icon = document.createElement("img");
     
     icon.src = source;
-    icon.setAttribute("height", "20px");
-    icon.setAttribute("width", "20px");
+    icon.setAttribute("height", "30px");
+    icon.setAttribute("width", "30px");
     
     span.appendChild(icon);
     p.appendChild(span);
@@ -127,29 +172,7 @@ const createInfo = function(source, text){
 
 
 
-const displayHour = function(){
-    const div = document.createElement('div');
 
-
-
-}
-
-
-
-const createSchedule = function(interval, week, index){
-
-    const p = document.createElement("p");
-    const spanW = document.createElement("span");
-    spanW.textContent = week[index][0];
-
-    const spanH = document.createElement("span");
-    spanH.textContent = interval[0];
-
-    p.appendChild(spanW);
-    p.appendChild(spanH);
-
-    return p
-}
 
 
 
