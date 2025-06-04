@@ -37,21 +37,11 @@ const createAboutSection = function(){
 
     div.appendChild(h1);
 
-    const p = document.createElement("p");
-    p.textContent = AU_TXT[0];
-    div.appendChild(p);
-
-    const p2 = document.createElement("p");
-    p2.textContent = AU_TXT[1];
-    div.appendChild(p2);
-
-    const p3 = document.createElement("p");
-    p3.textContent = AU_TXT[2];
-    div.appendChild(p3);
-
-    const p4 = document.createElement("p");
-    p4.textContent = AU_TXT[3];
-    div.appendChild(p4);
+    for (let x = 0; x < AU_TXT.length; x++){
+        const p = document.createElement("p");
+        p.textContent = AU_TXT[x];
+        div.appendChild(p);
+    }
 
     const p5 = document.createElement("p");
     const link = document.createElement("a");
@@ -92,7 +82,7 @@ const createContact = function(){
     container.appendChild(name);
     container.appendChild(adress);
     container.appendChild(hour);
-    container.appendChild(createAccess());
+    container.appendChild(displayAccess());
 
     div.appendChild(container);
   
@@ -102,44 +92,35 @@ const createContact = function(){
 }
 
 
-const createAccess = function(){
+const displayAccess = function(){
     const div = document.createElement("div");
 
-    const metro = document.createElement("p");
-    const span = document.createElement("span");
-    const iconImg = document.createElement("img");
-    
-    iconImg.src = metroIcon;
-    iconImg.setAttribute("height", "20px");
-    iconImg.setAttribute("width", "20px");
-    
-    span.appendChild(iconImg);
-    metro.appendChild(span);
-
-    const span2 = document.createElement("span");
-    span2.textContent = "Quelque part Station"
-    metro.appendChild(span2);
-
-    const bus = document.createElement("p");
-    const span3 = document.createElement("span");
-    const busImg = document.createElement("img");
-
-    busImg.src = busIcon;
-    busImg.setAttribute("height", "20px");
-    busImg.setAttribute("width", "20px");
-
-    span3.appendChild(busImg);
-    bus.appendChild(span3);
-
-    const span4 = document.createElement("span");
-    span4.textContent = "Probablement le lieu"
-    bus.appendChild(span4);
-    
-
-    div.appendChild(metro);
-    div.appendChild(bus)
+    div.appendChild(createAccess(metroIcon, "Quelque part Station"));
+    div.appendChild(createAccess(busIcon, "Probablement le lieu"))
+    div.appendChild(createAccess(phoneIcon, "+331 11 11 11 11"));
 
     return div;
+}
+
+
+const createAccess = function(source, text){
+    const p = document.createElement("p");
+    const span = document.createElement("span");
+    const icon = document.createElement("img");
+    
+    icon.src = source;
+    icon.setAttribute("height", "20px");
+    icon.setAttribute("width", "20px");
+    
+    span.appendChild(icon);
+    p.appendChild(span);
+
+    const spanText = document.createElement("span");
+    spanText.textContent = text
+    p.appendChild(spanText);
+
+
+    return p
 }
 
 
