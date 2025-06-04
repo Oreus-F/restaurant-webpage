@@ -773,9 +773,37 @@ textarea:focus{
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: repeat(4, auto);
+    grid-template-areas: "img restaurant"
+    "img location"
+    "img hour"
+    "access access";
 }
 
 
+.adress > img{
+    grid-area: img;
+    width: 80%;
+    border-radius: 1rem;
+    border: 5px solid var(--ascent-color);
+}
 
 
+.adress > p:nth-child(2){
+    grid-area: restaurant;
+}
 
+
+.adress > p:nth-child(3){
+    grid-area: location;
+}
+
+
+.adress > p:nth-child(4){
+    grid-area: hour;
+}
+
+
+.adress > div:last-child{
+    grid-area: access;
+    display: flex;
+}
