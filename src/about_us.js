@@ -1,7 +1,11 @@
-import { openHour, weeks, AU_TXT, busIcon, metroIcon, restaurantImg } from "./variables";
+import { openHour, weeks, Txt_AboutUs, busIcon, metroIcon, restaurantImg } from "./variables";
+
+
+const lang = "EN";
 
 
 const loadingAboutUs = function(){
+
     const header = document.querySelector("header");
     header.classList.toggle("about_us");
 
@@ -31,9 +35,9 @@ const createAboutSection = function(){
 
     div.appendChild(h1);
 
-    for (let x = 0; x < AU_TXT.length; x++){
+    for (let x = 0; x < Txt_AboutUs.length; x++){
         const p = document.createElement("p");
-        p.textContent = AU_TXT[x];
+        p.textContent = Txt_AboutUs[x];
         div.appendChild(p);
     }
 
@@ -78,7 +82,7 @@ const displayLocation = function(){
     const name = document.createElement("p");
     name.textContent = "Odin's crêperie";
     const adress = document.createElement("p");
-    adress.textContent = "11 rue d'Odin, 75000 PARIS";
+    adress.textContent = lang === "FR" ? "11 rue d'Odin, 75000 PARIS" : "11 Odin's Street";
     const phone = document.createElement("p");
     phone.textContent = "01 11 11 11 11";
     
@@ -86,8 +90,11 @@ const displayLocation = function(){
     div.appendChild(adress);
     div.appendChild(phone);
 
-    div.appendChild(createInfo(metroIcon, "Quelque part Station"));
-    div.appendChild(createInfo(busIcon, "Probablement le lieu"));
+    let metroStation = lang === "FR" ? "Quelque part Station" : "Somewhere Station";
+    let busStation = lang === "FR" ? "Probablement le lieu" : "Probably somewhere"
+
+    div.appendChild(createInfo(metroIcon, metroStation));
+    div.appendChild(createInfo(busIcon, busStation));
 
 
     return div
@@ -112,7 +119,7 @@ const displayHour = function(){
     let size = Object.keys(weeks).length
 
     const h2 = document.createElement("h2");
-    h2.textContent = "horaires";
+    h2.textContent = lang === "FR" ? "horaires" : "hours";
     div.appendChild(h2);
 
     for (let x= 0; x < size; x++){
@@ -163,16 +170,5 @@ const createInfo = function(source, text){
 
 
 
-
-
-
-
-/* 
-
-- placer faux numéro de tel 
-- créer le grid element pour tout placer
-
-
-*/
 
 export {loadingAboutUs};

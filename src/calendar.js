@@ -5,6 +5,7 @@ import {months, weeks, intervalHours, calendarBlue, calendarWhite,
 } from "./variables.js"
 
 
+let lang = "EN"
 
 
 let info = {};
@@ -20,7 +21,7 @@ const createDialog = function(){
 
     const div = document.createElement("div");
     const title = document.createElement("h1");
-    title.textContent = "réservation";
+    title.textContent = lang === "FR" ? "réservation" : "reservation";
 
     const close = document.createElement("span");
     const button = document.createElement("button");
@@ -505,7 +506,7 @@ const createHours = function(intervalHours, hour, info){
     
 
     const title = document.createElement("h2");
-    title.textContent = "Sélectionnez une heure";
+    title.textContent = lang === "FR" ? "Sélectionnez une heure" : "Select a time";
     div.appendChild(title);
 
     const available = intervalHours.filter((interval) => interval > hour);
@@ -523,7 +524,7 @@ const createHours = function(intervalHours, hour, info){
 const displayDej = function(interval, info){
     const div = document.createElement("div");
     const dej = document.createElement("p");
-    dej.textContent = "déjeuner";
+    dej.textContent = lang === "FR" ? "déjeuner" : "lunch";
     div.appendChild(dej);
 
     for(let x=0; x < interval.length; x++){
@@ -581,7 +582,7 @@ const createPerson = function(info){
     div.classList.toggle("person");
 
     const title = document.createElement("h2");
-    title.textContent = "Nombre de personne";
+    title.textContent = lang === "FR" ? "Nombre de personne" : "How many people";
     div.appendChild(title);
 
     const container = document.createElement("div");
@@ -658,7 +659,7 @@ const createForm = function(info){
 
 
     const p = document.createElement("p");
-    p.textContent = "Entrez votre e-mail pour compléter votre réservation";
+    p.textContent = lang === "FR" ? "Entrez votre e-mail pour compléter votre réservation" : "Put your email to complete the reservation";
     form.appendChild(p);
 
 
@@ -666,7 +667,7 @@ const createForm = function(info){
 
     const label = document.createElement("label");
     const span = document.createElement("span");
-    span.textContent = "Adresse e-mail*";
+    span.textContent = lang === "FR" ? "Adresse e-mail*" : "email address*";
     label.appendChild(span);
     container.appendChild(label);
 
@@ -674,20 +675,26 @@ const createForm = function(info){
     input.setAttribute("type", "email");
     input.setAttribute("name", "email");
     input.setAttribute("required", "true");
-    input.setAttribute("placeholder", "Votre adresse e-mail");
+
+    let placeholder = lang === "FR" ? "Votre adresse e-mail" : "Your email address"
+
+    input.setAttribute("placeholder", placeholder);
     container.appendChild(input)
     form.appendChild(container);
 
 
     const comment = document.createElement("textarea");
-    comment.setAttribute("placeholder", "Pour toutes informations complémentaires.");
+
+    let placeholderComment = lang = "FR" ? "Pour toutes informations complémentaires." : "For more informations";
+
+    comment.setAttribute("placeholder", placeholderComment);
     form.appendChild(comment);
 
 
 
 
     const button = document.createElement("button");
-    button.textContent = "réserver";
+    button.textContent = lang === "FR" ? "réserver" : "reserve";
     button.addEventListener("click", () => {
         closeDialog();
         alert("Not the purpose of this project, but it was fun to create though");

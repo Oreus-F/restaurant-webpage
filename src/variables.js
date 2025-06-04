@@ -1,3 +1,9 @@
+/* LANG */
+
+
+const lang = "EN"
+
+
 /* IMAGES */
 
 import mainImg from "/asset/img/mainGalette.jpeg"
@@ -36,10 +42,28 @@ import liste_cidre from "../asset/txt/liste_cidre.txt";
 import liste_vins from "../asset/txt/liste_vins.txt";
 import liste_sans_alcool from "../asset/txt/liste_sans_alcool.txt";
 
-const text_Menu_FR = [liste_galette, liste_crepe, liste_glace, liste_cidre, liste_vins, liste_sans_alcool];
 
-import TXT_AboutUS from "../asset/txt/AboutUS.txt"
-const AU_TXT = TXT_AboutUS.split(";");
+import list_galette from "../asset/txt/list_galettes.txt";
+import list_crepe from "../asset/txt/list_crepe.txt";
+import list_ice_cream from "../asset/txt/list_ice_cream.txt";
+import list_cider from "../asset/txt/list_cider.txt";
+import list_wines from "../asset/txt/list_wines.txt";
+import list_alcohol_free from "../asset/txt/list_alcohol_free.txt";
+ 
+const FR_Menu = [liste_galette, liste_crepe, liste_glace, liste_cidre, liste_vins, liste_sans_alcool];
+const EN_Menu = [list_galette, list_crepe, list_ice_cream, list_cider, list_wines, list_alcohol_free];
+
+const text_Menu = lang === "FR" ? FR_Menu : EN_Menu;
+
+
+import FR_TXT_AboutUS from "../asset/txt/AboutUS.txt"
+const FR_AboutUS = FR_TXT_AboutUS.split(";");
+
+import EN_TXT_AboutUS from  "../asset/txt/EN_AboutUS.txt";
+const EN_AboutUS = EN_TXT_AboutUS.split(";");
+
+
+const Txt_AboutUs = lang === "FR" ? FR_AboutUS : EN_AboutUS;
 
 /* VAR */
 
@@ -61,6 +85,15 @@ const months = {
 };
 
 
+if (lang === "EN"){
+   for (const index in months){
+    months[index][0] = months[index][1];
+    console.log(months[index])
+   };
+};
+
+
+
 const weeks = {
     0 : ["dimanche", "sunday", 6],
     1 : ["lundi", "monday", 0],
@@ -72,17 +105,29 @@ const weeks = {
 };
 
 
-const openHour = ["12.00", "15.00", "19.00", "22.30"];
+if (lang === "EN"){
+    for (const index in weeks){
+        weeks[index][0] = weeks[index][1];
+    };
+};
+
+
+const open_hours = {
+    FR: ["12.00", "15.00", "19.00", "22.30"],
+    EN: ["12:00pm", "03:00pm", "07:00pm", "10:00pm"],
+};
+
+const openHour = lang === "FR" ? open_hours.FR : open_hours.EN;
 
 
 const intervalHours = [
     "12.00", "12.15", "12.30", "12.45", 
     "13.00", "13.15", "13.30", "13.45",
-    "14.00", "14.15", "14.30", "14.45", "15.00", 
-    "19.00", "19.15", "19.30", "19.45",
-    "20.00", "20.15", "20.30", "20.45",
-    "21.00", "21.15", "21.30", "21.45",
-    "22.00", "22.15", "22.30",
+    "14.00", "14.15", "14.30", "14.45", 
+    "15.00", "19.00", "19.15", "19.30",
+    "19.45", "20.00", "20.15", "20.30",
+    "20.45", "21.00", "21.15", "21.30",
+    "21.45", "22.00", "22.15", "22.30",
 ];
 
 
@@ -91,4 +136,4 @@ const intervalHours = [
 export {months, weeks, openHour, intervalHours, 
     calendarWhite, calendarBlue, hourWhite, hourBlue,
 personBlue, personWhite, recapBlue, recapWhite, separatorBlue,
-mainImg, text_Menu_FR, AU_TXT, metroIcon, busIcon, restaurantImg};
+mainImg, text_Menu, Txt_AboutUs, metroIcon, busIcon, restaurantImg};

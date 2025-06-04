@@ -1,0 +1,1 @@
+﻿wines;Glass of wine (12cl);6.00 €;White / Red / Rosé;Bottle of côtes de provences (75cl);19.00 €;Rosé;Bottle of Muscadet (75cl);20.00 €;White;Bottle of Bordeaux (75cl); 22.00 €;Red

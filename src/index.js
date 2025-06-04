@@ -21,7 +21,7 @@ for (let x = 0; x < buttons.length; x++){
 
     buttons[x].addEventListener("click", () => {
         resetDOM();
-        loadingFunctions[x]();
+        loadingFunctions[x]("EN");
     })
 }
 

@@ -1,5 +1,4 @@
-import { text_Menu_FR } from "./variables";
-
+import { text_Menu } from "./variables";
 
 const create_title = function(text){
     const div = document.createElement("div");
@@ -22,10 +21,12 @@ const create_title = function(text){
 
     } else {
 
-        if(text[0] === "cidres & bières" || text[0] === "sans alcool"){
-            text[0] === "cidres & bières" ? 
-            div.classList.toggle("cidre-biere"): 
+        if(text[0] === "cidres & bières" || text[0] === "ciders & beers") {
+            div.classList.toggle("cidre-biere")
+        } else if (text[0] === "sans alcool" || text[0] === "alcohol free"){
             div.classList.toggle("sans-alcool");
+        } else if (text[0] === "ice creams"){
+            div.classList.toggle("glaces");
         } else {div.classList.toggle(text[0])};
 
 
@@ -93,14 +94,15 @@ const create_menu = function(text){
 
 const loadingMenu = function(){
 
+
     const header = document.querySelector("header");
     header.classList.toggle("menu");
 
     const content = document.querySelector("#content");
     content.classList.toggle("menu");
 
-    for (let x = 0; x < text_Menu_FR.length; x++){
-        content.appendChild(create_menu(text_Menu_FR[x]));
+    for (let x = 0; x < text_Menu.length; x++){
+        content.appendChild(create_menu(text_Menu[x]));
     };
 
 }
