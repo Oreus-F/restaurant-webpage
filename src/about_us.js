@@ -4,7 +4,6 @@ const AU_TXT = TXT_AboutUS.split(";");
 import metroIcon from "../asset/img/metro-ascent.svg";
 import busIcon from "../asset/img/bus-ascent.svg";
 import restaurantImg from "../asset/img/ptitBreton.jpg";
-import phoneIcon from "../asset/img/phone.svg";
 
 
 import { openHour, weeks } from "./variables";
@@ -62,7 +61,7 @@ const createAboutSection = function(){
 
 const createContact = function(){
     const div = document.createElement("div");
-    div.classList.toggle("content-center");
+    div.classList.toggle("content-contact");
 
     const h1 = document.createElement('h1');
     h1.textContent = "Contact";
@@ -88,16 +87,16 @@ const displayLocation = function(){
     name.textContent = "Odin's crêperie";
     const adress = document.createElement("p");
     adress.textContent = "11 rue d'Odin, 75000 PARIS";
+    const phone = document.createElement("p");
+    phone.textContent = "01 11 11 11 11";
     
     div.appendChild(name);
     div.appendChild(adress);
-    div.appendChild(createInfo(phoneIcon, "01 11 11 11 11"));
+    div.appendChild(phone);
 
-    const location = document.createElement("div");
-    location.appendChild(createInfo(metroIcon, "Quelque part Station"));
-    location.appendChild(createInfo(busIcon, "Probablement le lieu"));
+    div.appendChild(createInfo(metroIcon, "Quelque part Station"));
+    div.appendChild(createInfo(busIcon, "Probablement le lieu"));
 
-    div.appendChild(location);
 
     return div
 }
@@ -140,7 +139,7 @@ const createSchedule = function(hour, week, index){
     spanW.textContent = week[index][0];
 
     const spanH = document.createElement("span");
-    spanH.textContent = `${hour[0]}-${hour[1]} / ${hour[2]}-${hour[3]}`;
+    spanH.textContent = `${hour[0]} - ${hour[1]} / ${hour[2]} - ${hour[3]}`;
 
     p.appendChild(spanW);
     p.appendChild(spanH);
