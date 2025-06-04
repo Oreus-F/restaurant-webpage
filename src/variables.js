@@ -1,3 +1,49 @@
+/* IMAGES */
+
+import mainImg from "/asset/img/mainGalette.jpeg"
+
+
+import calendarWhite from "../asset/img/calendar_white.svg";
+import calendarBlue from "../asset/img/calendar_blue.svg";
+
+
+import hourWhite from "../asset/img/hour_white.svg";
+import hourBlue from "../asset/img/hour_blue.svg";
+
+import personWhite from "../asset/img/person_white.svg";
+import personBlue from "../asset/img/person_blue.svg";
+
+import recapBlue from "../asset/img/recap_blue.svg";
+import recapWhite from "../asset/img/recap_white.svg";
+
+import separatorBlue from "../asset/img/separator_blue.svg";
+
+
+
+import metroIcon from "../asset/img/metro-ascent.svg";
+import busIcon from "../asset/img/bus-ascent.svg";
+import restaurantImg from "../asset/img/ptitBreton.jpg";
+
+
+
+/* TEXT */
+
+
+import liste_galette from "../asset/txt/liste_galette.txt";
+import liste_crepe from "../asset/txt/liste_crepe.txt";
+import liste_glace from "../asset/txt/liste_glace.txt";
+import liste_cidre from "../asset/txt/liste_cidre.txt";
+import liste_vins from "../asset/txt/liste_vins.txt";
+import liste_sans_alcool from "../asset/txt/liste_sans_alcool.txt";
+
+const textMenu = [liste_galette, liste_crepe, liste_glace, liste_cidre, liste_vins, liste_sans_alcool];
+
+import TXT_AboutUS from "../asset/txt/AboutUS.txt"
+const AU_TXT = TXT_AboutUS.split(";");
+
+/* VAR */
+
+
 const months = {
     0: ["janvier", "january", 31],
     1: ["février", "febuary", 28],
@@ -40,4 +86,9 @@ const intervalHours = [
 ];
 
 
-export {months, weeks, openHour, intervalHours};
+
+
+export {months, weeks, openHour, intervalHours, 
+    calendarWhite, calendarBlue, hourWhite, hourBlue,
+personBlue, personWhite, recapBlue, recapWhite, separatorBlue,
+mainImg, textMenu, AU_TXT, metroIcon, busIcon, restaurantImg};

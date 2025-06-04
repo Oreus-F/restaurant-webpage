@@ -1,4 +1,4 @@
-import mainImg from "/asset/img/mainGalette.jpeg"
+import { mainImg } from "./variables";
 
 
 const loading_homepage = function(){

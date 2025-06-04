@@ -1,20 +1,10 @@
 // IMPORT
-import {months, weeks, intervalHours} from "./variables.js"
+import {months, weeks, intervalHours, calendarBlue, calendarWhite,
+    hourBlue, hourWhite, personBlue, personWhite, separatorBlue,
+    recapBlue, recapWhite
+} from "./variables.js"
 
-import calendarWhite from "../asset/img/calendar_white.svg";
-import calendarBlue from "../asset/img/calendar_blue.svg";
 
-
-import hourWhite from "../asset/img/hour_white.svg";
-import hourBlue from "../asset/img/hour_blue.svg";
-
-import personWhite from "../asset/img/person_white.svg";
-import personBlue from "../asset/img/person_blue.svg";
-
-import recapBlue from "../asset/img/recap_blue.svg";
-import recapWhite from "../asset/img/recap_white.svg";
-
-import separatorBlue from "../asset/img/separator_blue.svg";
 
 
 let info = {};

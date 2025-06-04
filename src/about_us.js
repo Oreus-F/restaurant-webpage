@@ -1,12 +1,4 @@
-import TXT_AboutUS from "../asset/txt/AboutUS.txt"
-const AU_TXT = TXT_AboutUS.split(";");
-
-import metroIcon from "../asset/img/metro-ascent.svg";
-import busIcon from "../asset/img/bus-ascent.svg";
-import restaurantImg from "../asset/img/ptitBreton.jpg";
-
-
-import { openHour, weeks } from "./variables";
+import { openHour, weeks, AU_TXT, busIcon, metroIcon, restaurantImg } from "./variables";
 
 
 const loadingAboutUs = function(){

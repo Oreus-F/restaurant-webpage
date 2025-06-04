@@ -1,9 +1,4 @@
-import liste_galette from "../asset/txt/liste_galette.txt";
-import liste_crepe from "../asset/txt/liste_crepe.txt";
-import liste_glace from "../asset/txt/liste_glace.txt";
-import liste_cidre from "../asset/txt/liste_cidre.txt";
-import liste_vins from "../asset/txt/liste_vins.txt";
-import liste_sans_alcool from "../asset/txt/liste_sans_alcool.txt";
+import { textMenu } from "./variables";
 
 
 const create_title = function(text){
@@ -104,13 +99,10 @@ const loadingMenu = function(){
     const content = document.querySelector("#content");
     content.classList.toggle("menu");
 
+    for (let x = 0; x < textMenu.length; x++){
+        content.appendChild(create_menu(textMenu[x]));
+    };
 
-    content.appendChild(create_menu(liste_galette));
-    content.appendChild(create_menu(liste_crepe));
-    content.appendChild(create_menu(liste_glace));
-    content.appendChild(create_menu(liste_cidre));
-    content.appendChild(create_menu(liste_vins));
-    content.appendChild(create_menu(liste_sans_alcool));  
 }
 
 
