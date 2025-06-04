@@ -1,4 +1,4 @@
-import { textMenu } from "./variables";
+import { text_Menu_FR } from "./variables";
 
 
 const create_title = function(text){
@@ -99,8 +99,8 @@ const loadingMenu = function(){
     const content = document.querySelector("#content");
     content.classList.toggle("menu");
 
-    for (let x = 0; x < textMenu.length; x++){
-        content.appendChild(create_menu(textMenu[x]));
+    for (let x = 0; x < text_Menu_FR.length; x++){
+        content.appendChild(create_menu(text_Menu_FR[x]));
     };
 
 }

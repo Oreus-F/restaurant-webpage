@@ -36,7 +36,7 @@ import liste_cidre from "../asset/txt/liste_cidre.txt";
 import liste_vins from "../asset/txt/liste_vins.txt";
 import liste_sans_alcool from "../asset/txt/liste_sans_alcool.txt";
 
-const textMenu = [liste_galette, liste_crepe, liste_glace, liste_cidre, liste_vins, liste_sans_alcool];
+const text_Menu_FR = [liste_galette, liste_crepe, liste_glace, liste_cidre, liste_vins, liste_sans_alcool];
 
 import TXT_AboutUS from "../asset/txt/AboutUS.txt"
 const AU_TXT = TXT_AboutUS.split(";");
@@ -91,4 +91,4 @@ const intervalHours = [
 export {months, weeks, openHour, intervalHours, 
     calendarWhite, calendarBlue, hourWhite, hourBlue,
 personBlue, personWhite, recapBlue, recapWhite, separatorBlue,
-mainImg, textMenu, AU_TXT, metroIcon, busIcon, restaurantImg};
+mainImg, text_Menu_FR, AU_TXT, metroIcon, busIcon, restaurantImg};
