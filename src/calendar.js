@@ -5,8 +5,6 @@ import {months, weeks, intervalHours, calendarBlue, calendarWhite,
 } from "./variables.js"
 
 
-
-
 let info = {};
 
 

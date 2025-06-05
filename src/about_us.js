@@ -1,5 +1,6 @@
 import { openHour, weeks, AU_TXT, busIcon, metroIcon, restaurantImg } from "./variables";
 
+
 const loadingAboutUs = function(){
 
     const header = document.querySelector("header");
