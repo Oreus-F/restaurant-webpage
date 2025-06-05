@@ -20,7 +20,7 @@ const createDialog = function(){
 
     const div = document.createElement("div");
     const title = document.createElement("h1");
-    title.textContent = "réservation";
+    title.textContent = "reservation";
 
     const close = document.createElement("span");
     const button = document.createElement("button");
@@ -372,7 +372,7 @@ const increaseMonth = function(today){
 
     const caption = document.querySelector("caption");
     let displayedMonth = caption.textContent.toLowerCase();
-    let year = displayedMonth === "décembre" ? year +=1 : today.year;
+    let year = displayedMonth === "december" ? year +=1 : today.year;
     
     const N1Month = wichMonth(today.date, months, 1);
     const N1firstDate =  getInfos(N1Month[1], 1, year);
@@ -406,7 +406,7 @@ const decreaseMonth = function(today){
 
     const caption = document.querySelector("caption");
     let displayedMonth = caption.textContent.toLowerCase();
-    let year = displayedMonth === "janvier" ? year -=1 : today.year;
+    let year = displayedMonth === "january" ? year -=1 : today.year;
 
     const N0firstDate = getInfos(today.month[1], 1, today.year);
 
@@ -449,7 +449,7 @@ const createTable = function(){
     rowArrow.appendChild(right);
     table.appendChild(rowArrow);
 
-    const days = ["L", "M", "M", "J", "V", "S", "D"];
+    const days = ["M", "T", "W", "T", "F", "S", "S"];
     const rowDay = document.createElement("tr");
     for (let i = 0; i < days.length; i++){
         const th = document.createElement("th");
@@ -505,7 +505,7 @@ const createHours = function(intervalHours, hour, info){
     
 
     const title = document.createElement("h2");
-    title.textContent = "Sélectionnez une heure";
+    title.textContent = "Select a time";
     div.appendChild(title);
 
     const available = intervalHours.filter((interval) => interval > hour);
@@ -523,7 +523,7 @@ const createHours = function(intervalHours, hour, info){
 const displayDej = function(interval, info){
     const div = document.createElement("div");
     const dej = document.createElement("p");
-    dej.textContent = "déjeuner";
+    dej.textContent = "lunch";
     div.appendChild(dej);
 
     for(let x=0; x < interval.length; x++){
@@ -581,7 +581,7 @@ const createPerson = function(info){
     div.classList.toggle("person");
 
     const title = document.createElement("h2");
-    title.textContent = "Nombre de personne";
+    title.textContent = "How many people";
     div.appendChild(title);
 
     const container = document.createElement("div");
@@ -658,7 +658,7 @@ const createForm = function(info){
 
 
     const p = document.createElement("p");
-    p.textContent = "Entrez votre e-mail pour compléter votre réservation";
+    p.textContent = "Put your email to complete the reservation";
     form.appendChild(p);
 
 
@@ -666,7 +666,7 @@ const createForm = function(info){
 
     const label = document.createElement("label");
     const span = document.createElement("span");
-    span.textContent = "Adresse e-mail*";
+    span.textContent = "email address*";
     label.appendChild(span);
     container.appendChild(label);
 
@@ -674,20 +674,26 @@ const createForm = function(info){
     input.setAttribute("type", "email");
     input.setAttribute("name", "email");
     input.setAttribute("required", "true");
-    input.setAttribute("placeholder", "Votre adresse e-mail");
+
+    let placeholder = "Your email address";
+
+    input.setAttribute("placeholder", placeholder);
     container.appendChild(input)
     form.appendChild(container);
 
 
     const comment = document.createElement("textarea");
-    comment.setAttribute("placeholder", "Pour toutes informations complémentaires.");
+
+    let placeholderComment = "For more informations";
+
+    comment.setAttribute("placeholder", placeholderComment);
     form.appendChild(comment);
 
 
 
 
     const button = document.createElement("button");
-    button.textContent = "réserver";
+    button.textContent = "reserve";
     button.addEventListener("click", () => {
         closeDialog();
         alert("Not the purpose of this project, but it was fun to create though");

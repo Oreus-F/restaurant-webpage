@@ -28,61 +28,66 @@ import restaurantImg from "../asset/img/ptitBreton.jpg";
 
 /* TEXT */
 
+import list_galette from "../asset/txt/list_galettes.txt";
+import list_crepe from "../asset/txt/list_crepe.txt";
+import list_ice_cream from "../asset/txt/list_ice_cream.txt";
+import list_cider from "../asset/txt/list_cider.txt";
+import list_wines from "../asset/txt/list_wines.txt";
+import list_alcohol_free from "../asset/txt/list_alcohol_free.txt";
 
-import liste_galette from "../asset/txt/liste_galette.txt";
-import liste_crepe from "../asset/txt/liste_crepe.txt";
-import liste_glace from "../asset/txt/liste_glace.txt";
-import liste_cidre from "../asset/txt/liste_cidre.txt";
-import liste_vins from "../asset/txt/liste_vins.txt";
-import liste_sans_alcool from "../asset/txt/liste_sans_alcool.txt";
 
-const text_Menu_FR = [liste_galette, liste_crepe, liste_glace, liste_cidre, liste_vins, liste_sans_alcool];
+const textMenu = [list_galette, list_crepe, list_ice_cream, list_cider, list_wines, list_alcohol_free];
 
-import TXT_AboutUS from "../asset/txt/AboutUS.txt"
-const AU_TXT = TXT_AboutUS.split(";");
+
+
+
+import EN_TXT_AboutUS from  "../asset/txt/EN_AboutUS.txt";
+const AU_TXT = EN_TXT_AboutUS.split(";");
+
 
 /* VAR */
 
 
 const months = {
-    0: ["janvier", "january", 31],
-    1: ["février", "febuary", 28],
-    2: ["mars", "march", 31],
-    3: ["avril", "april", 30],
-    4: ["mai", "may", 31],
-    5: ["juin", "june", 30],
-    6: ["juillet", "july", 31],
-    7: ["août", "august", 31],
-    8: ["septembre", "september", 30],
-    9: ["octobre", "october", 31],
-    10: ["novembre", "november", 30],
-    11: ["décembre", "december", 31],
+    0: ["january", "january", 31],
+    1: ["febuary", "febuary", 28],
+    2: ["march", "march", 31],
+    3: ["april", "april", 30],
+    4: ["may", "may", 31],
+    5: ["june", "june", 30],
+    6: ["july", "july", 31],
+    7: ["august", "august", 31],
+    8: ["september", "september", 30],
+    9: ["october", "october", 31],
+    10: ["november", "november", 30],
+    11: ["december", "december", 31],
 
 };
 
 
 const weeks = {
-    0 : ["dimanche", "sunday", 6],
-    1 : ["lundi", "monday", 0],
-    2 : ["mardi", "tuesday", 1],
-    3 : ["mercredi", "wednesday", 2],
-    4 : ["jeudi", "thursday", 3],
-    5 : ["vendredi", "friday", 4],
-    6 : ["samedi", "saturday", 5],
+    0 : ["sunday", "sunday", 6],
+    1 : ["monday", "monday", 0],
+    2 : ["tuesday", "tuesday", 1],
+    3 : ["wednesday", "wednesday", 2],
+    4 : ["thursday", "thursday", 3],
+    5 : ["friday", "friday", 4],
+    6 : ["saturday", "saturday", 5],
 };
 
 
-const openHour = ["12.00", "15.00", "19.00", "22.30"];
+const openHour = ["12:00pm", "03:00pm", "07:00pm", "10:00pm"];
+
 
 
 const intervalHours = [
     "12.00", "12.15", "12.30", "12.45", 
     "13.00", "13.15", "13.30", "13.45",
-    "14.00", "14.15", "14.30", "14.45", "15.00", 
-    "19.00", "19.15", "19.30", "19.45",
-    "20.00", "20.15", "20.30", "20.45",
-    "21.00", "21.15", "21.30", "21.45",
-    "22.00", "22.15", "22.30",
+    "14.00", "14.15", "14.30", "14.45", 
+    "15.00", "19.00", "19.15", "19.30",
+    "19.45", "20.00", "20.15", "20.30",
+    "20.45", "21.00", "21.15", "21.30",
+    "21.45", "22.00", "22.15", "22.30",
 ];
 
 
@@ -91,4 +96,4 @@ const intervalHours = [
 export {months, weeks, openHour, intervalHours, 
     calendarWhite, calendarBlue, hourWhite, hourBlue,
 personBlue, personWhite, recapBlue, recapWhite, separatorBlue,
-mainImg, text_Menu_FR, AU_TXT, metroIcon, busIcon, restaurantImg};
+mainImg, textMenu, AU_TXT, metroIcon, busIcon, restaurantImg};

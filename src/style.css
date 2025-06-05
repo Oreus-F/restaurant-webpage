@@ -267,7 +267,7 @@ nav > button:last-child:hover{
 }
 
 
-.vins > div:first-child{
+.wines > div:first-child{
     background-image: url("/asset/img/vins.jpg");
     background-size: cover;
     background-position-y: 55%;
@@ -861,7 +861,7 @@ textarea:focus{
 
 .informations > div > p {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 2fr;
 }
 
 
