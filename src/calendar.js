@@ -691,7 +691,7 @@ const createForm = function(info){
 
 
     const button = document.createElement("button");
-    button.textContent = "reserve";
+    button.textContent = "book";
     button.addEventListener("click", () => {
         closeDialog();
         alert("Not the purpose of this project, but it was fun to create though");
