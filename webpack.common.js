@@ -16,4 +16,28 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
+    module: {
+        rules: [
+        {
+            test: /\.css$/i,
+            use: ["style-loader", "css-loader"],
+        },
+        {
+            test: /\.html$/i,
+            loader: "html-loader",
+        },
+        {
+            test: /\.(png|jpg|jpeg|gif)$/i,
+            type: "asset/resource",
+        },
+        {
+            test: /\.svg$/i,
+            type: "asset/inline",
+        },
+        {
+            test: /\.txt$/i,
+            use: "raw-loader",
+        },
+        ],
+    },
 };
